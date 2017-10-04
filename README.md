@@ -1,5 +1,5 @@
-# RX Base
-git clone https://github.com/coolworld2015/rx-base.git
+# RX Forp
+git clone https://github.com/coolworld2015/rx-forp.git
 -------------------------------------------------------------------------------------------------
 Install only in root !!! 
 -------------------------------------------------------------------------------------------------
