@@ -248,13 +248,7 @@
 				</header>
 				
 				<div class="search-results-content">
-
-						<users-items></users-items>
- 
-						
-
- 
-
+					<payments-items></payments-items>
 				</div>
 			</section>
 		</main>
@@ -390,22 +384,12 @@
 	const appConfig = {
 	  message: 'Loading...'
 	}
-		
-	Vue.component('todo-item', {
-		props: ['todo'],
-		data: function () {
-		  return {
-			items: [
-				{ id: 0, name: 'Ковальов Денис Сергійович' },
-				{ id: 1, name: 'Сыр' },
-				{ id: 2, name: 'Мясо' }
-			]
-		  }
-		},
+	
+	Vue.component('payments-items', {
 		template: `	<div>
 						<div class="payment" v-for="item in items">
 							<div class="search-results-item search-results-choose"><span class="circle"></span></div>
-							<div class="search-results-item search-results-sender">{{ item.name }}</div>
+							<div class="search-results-item search-results-sender">{{ item.status }}</div>
 							<div class="search-results-item search-results-product">Приватний</div>
 							<div class="search-results-item search-results-transfer">2155684289524</div>
 							<div class="search-results-item search-results-currency">UAH</div>
@@ -421,7 +405,45 @@
 							</div>
 							<div class="search-results-item search-results-other">...</div>
 						</div>
-					</div>`
+					</div>`,
+		data: function () {
+		  return {
+			items: []
+		  }
+		},
+		created() {
+			this.fetchData();
+		},
+		methods: {
+			fetchData() {
+				appConfig.message = 'Loading...'
+				//this.$http.get('https://ui-base.herokuapp.com/api/items/get')
+					this.$http.post('http://10.18.10.8:3000/payment/listall', {                
+							id: 'id'})
+						.then(result => { 
+							//console.log(result);
+							this.items = result.data;
+						})
+			},
+			showItem(item){
+				this.$router.push({ path: '/user-item/' + item.id + '/' + item.name + '/' + item.pass + '/' + item.description });
+			},				
+			showDetails(item){
+				appConfig.user = item;
+				this.$router.push('user-edit');
+				console.log("hello");
+			},
+			sort(a, b) {
+				let nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+				if (nameA < nameB) {
+					return -1
+				}
+				if (nameA > nameB) {
+					return 1
+				}
+				return 0;
+			}				
+		}
 	})
 			
 	Vue.component('users-items', {
