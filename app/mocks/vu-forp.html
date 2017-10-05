@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<META name=viewport content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
+		
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.3/vue-resource.min.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+	<div id="app">
+			<nav class="navbar navbar-default navbar-static-top" style="position: fixed; width: 100%;">
+			  <div class="container">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+				  <a class="navbar-brand" href="#">VU-Base</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+				  <ul class="nav navbar-nav">
+					<li v-on:click="changeRoute"><router-link to="/phones">Phones</router-link></li>
+					<li v-on:click="changeRoute"><router-link to="/users">Users</router-link></li>
+					<li v-on:click="changeRoute"><router-link to="/audit">Audit</router-link></li>
+				  </ul>
+				</div><!--/.nav-collapse -->
+			  </div>
+			</nav>
+			
+			<div class="container">
+				<div class="panel panel-primary" style="margin-top: 70px;">
+					<div class="panel-heading">
+						<h3 class="panel-title" style="text-align: center; font-size: x-large;">
+							{{appConfig.message}}
+						</h3>
+					</div>
+					
+					<div class="panel-body">
+						<router-view></router-view>
+					</div>
+				</div>
+			</div>
+	   
+
+	</div>
+
+	<script>
+		const appConfig = {
+		  message: 'Loading...'
+		}
+		
+		const Foo = { template: '<div>foo</div>' }
+		const Bar = { template: '<div>bar</div>' }
+		const Child = { template: '<div><child message="привет!"></child>Пользовательский компонент! <todo-item></todo-item></div>'	}
+		
+		const Phones = { template: '<div><phones-items></phones-items></div>' }
+		const Users = { template: '<div><users-items></users-items></div>' }
+		const UserEdit = { template: '<div><user-edit></user-edit></div>' }
+		const UserItem = { template: '<div><user-item></user-item></div>' }
+		const Audit = { template: '<div><audit-items></audit-items></div>' }
+
+		Vue.component('phones-items', {
+			template: '<ul class="list-group"><li class="list-group-item" v-for="item in items">{{ item.name }} - {{ item.phone }}</li></ul>',
+			data: function () {
+			  return {
+				items: []
+			  }
+			},
+			created() {
+				this.fetchData();
+			},
+			methods: {
+				fetchData() {
+					appConfig.message = 'Loading...'
+					this.$http.get('https://ui-base.herokuapp.com/api/items/get')
+						.then(result => { 
+							console.log(result);
+							this.items = result.data;
+							this.loading = false;
+							appConfig.message = 'Phones';
+						})
+				}
+			}
+		})
+		
+		Vue.component('users-items', {
+			//template: '<ul class="list-group"><li class="list-group-item" v-for="item in items"><router-link to="/user-edit">{{ item.name }} - {{ item.pass }}</router-link></li></ul>',
+			template: '<ul class="list-group"><li class="list-group-item" v-for="item in items" v-on:click="showItem(item)">{{ item.name }} - {{ item.pass }}</li></ul>',
+			data: function () {
+			  return {
+				items: []
+			  }
+			},
+			created() {
+				this.fetchData();
+			},
+			methods: {
+				fetchData() {
+					appConfig.message = 'Loading...'
+					this.$http.get('https://ui-base.herokuapp.com/api/users/get')
+						.then(result => { 
+							//console.log(result);
+							this.items = result.data.sort(this.sort);
+							this.loading = false;
+							appConfig.message = 'Users';
+						})
+				},
+				showItem(item){
+					this.$router.push({ path: '/user-item/' + item.id + '/' + item.name + '/' + item.pass + '/' + item.description });
+				},				
+				showDetails(item){
+					appConfig.user = item;
+					this.$router.push('user-edit');
+					console.log("hello");
+				},
+				sort(a, b) {
+					let nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+					if (nameA < nameB) {
+						return -1
+					}
+					if (nameA > nameB) {
+						return 1
+					}
+					return 0;
+				}				
+			}
+		})
+		
+		Vue.component('user-item', {
+			props: ['item'],
+			template: '<div style="text-align: center;">' + 
+						'' + 
+						'<input v-model="id" readonly><br>' +
+						'<input v-model="name"><br>' +
+						'<input v-model="pass"><br>' +
+						'<input v-model="description"><br><br>' +
+						'<button v-on:click="updateItem">Submit</button>' +
+						'</div>',
+			data: function () {
+					return {
+						message: '',
+						id: this.$route.params.id,
+						name: this.$route.params.name,
+						pass: this.$route.params.pass,
+						description: this.$route.params.description
+					}
+			},
+			created() {
+				appConfig.message = this.name;
+			},
+			methods: {
+				goBack() {
+					this.$router.push('/users');
+				},
+				updateItem() {
+					appConfig.message = 'Loading...'
+					this.$http.post('https://ui-base.herokuapp.com/api/users/update', {                
+							id: this.id,
+							name: this.name,
+							pass: this.pass,
+							description: this.description})
+						.then(result => { 
+							//console.log(result);
+							this.$router.push('/users');
+						})
+				},
+			}
+		})		
+		
+		Vue.component('user-edit', {
+			props: ['item'],
+			template: '<div>{{ id }} - {{ name }} - {{ pass}}</div>',
+			data: function () {
+				return {
+					id: appConfig.user.id,
+					name: appConfig.user.name,
+					pass: appConfig.user.pass
+				}
+			},
+		})
+		
+		Vue.component('audit-items', {
+			template: '<ul class="list-group"><li class="list-group-item" v-for="item in items">{{ item.name }} - {{ item.date }}</li></ul>',
+			data: function () {
+			  return {
+				items: []
+			  }
+			},
+			created() {
+				this.fetchData();
+			},
+			methods: {
+				fetchData() {
+					appConfig.message = 'Loading...'
+					this.$http.get('https://ui-base.herokuapp.com/api/audit/get')
+						.then(result => { 
+							console.log(result);
+							this.items = result.data;
+							this.loading = false;
+							appConfig.message = 'Audit';
+						})
+				}
+			}
+		})
+
+		Vue.component('my-counter', {
+			template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+			data: function () {
+			  console.log(window.appConfig.title)
+			  return {
+				counter: window.appConfig.title
+			  }
+			}
+		})
+
+		Vue.component('child', {
+		  props: ['message'],
+		  template: '<span>{{ message }}</span>'
+		})
+
+		const routes = [
+		  { path: '/', component: Users },
+		  { path: '/phones', component: Phones },
+		  { path: '/users', component: Users },
+		  { path: '/user-edit', component: UserEdit },
+		  { path: '/user-item/:id/:name/:pass/:description', component: UserItem, props: true },
+		  { path: '/audit', component: Audit },
+		]
+		 
+		const router = new VueRouter({
+		  routes // сокращение от `routes: routes`
+		})
+
+		const app = new Vue({
+			router,
+			data: { 
+				appConfig
+			},
+			methods: {
+				changeRoute() {
+					$('#navbar').collapse('hide');
+				}
+			}
+		}).$mount('#app')
+
+	</script>
+  </body>
+</html>

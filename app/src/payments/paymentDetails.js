@@ -111,12 +111,7 @@ class PaymentDetails extends Component {
 					<center>
 					<br/>
 					<hr/>
-					<br/>
-					<button className="button"
-						onClick={this.goBack.bind(this)}>
-						Submit
-					</button>
-	
+					<br/>	
 					<button className="button"
 						onClick={this.goBack.bind(this)}>
 						Back
