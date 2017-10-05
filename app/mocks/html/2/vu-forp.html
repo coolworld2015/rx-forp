@@ -248,7 +248,7 @@
 				</header>
 				
 				<div class="search-results-content">
-					<payments-items></payments-items>
+					<phones-items></phones-items>
 				</div>
 			</section>
 		</main>
@@ -417,13 +417,12 @@
 		methods: {
 			fetchData() {
 				appConfig.message = 'Loading...'
-				//this.$http.get('https://ui-base.herokuapp.com/api/items/get')
-					this.$http.post('http://10.18.10.8:3000/payment/listall', {                
-							id: 'id'})
-						.then(result => { 
-							//console.log(result);
-							this.items = result.data;
-						})
+				this.$http.post('http://10.18.10.8:3000/payment/listall', {                
+						id: 'id'})
+					.then(result => { 
+						//console.log(result);
+						this.items = result.data;
+					})
 			},
 			showItem(item){
 				this.$router.push({ path: '/user-item/' + item.id + '/' + item.name + '/' + item.pass + '/' + item.description });
@@ -446,23 +445,23 @@
 		}
 	})
 			
-	Vue.component('users-items', {
+	Vue.component('phones-items', {
 		template: `	<div>
 						<div class="payment" v-for="item in items">
 							<div class="search-results-item search-results-choose"><span class="circle"></span></div>
 							<div class="search-results-item search-results-sender">{{ item.name }}</div>
-							<div class="search-results-item search-results-product">Приватний</div>
-							<div class="search-results-item search-results-transfer">2155684289524</div>
-							<div class="search-results-item search-results-currency">UAH</div>
-							<div class="search-results-item search-results-amount">2568.00</div>
-							<div class="search-results-item search-results-date">01 Жовтня 2017</div>
+							<div class="search-results-item search-results-transfer">{{ item.phone }}</div>
+							<div class="search-results-item search-results-product">{{ item.street }}</div>
+							<div class="search-results-item search-results-currency">{{ item.house }}</div>
+							<div class="search-results-item search-results-amount">{{ item.apt }}</div>
+							<div class="search-results-item search-results-date">{{ item.phone }}</div>
 							<div class="search-results-item search-results-result long-term">
 								<span class="search-results-icon"></span>
-								30 днів
+								{{ item.index }}
 							</div>
 							<div class="search-results-item search-results-status active">
 								<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
-								Активний
+								{{ item.id }}
 							</div>
 							<div class="search-results-item search-results-other">...</div>
 						</div>
