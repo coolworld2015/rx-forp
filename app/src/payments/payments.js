@@ -9,11 +9,7 @@ class Payments extends Component {
 
         this.state = {
             showProgress: false,
-            items: appConfig.users.items.slice(0, 20),
-			filteredItems: appConfig.users.items,
-			resultsCount: 0,
-            recordsCount: 20,
-            positionY: 0
+            items: []
         };
     }
 	
@@ -41,12 +37,11 @@ class Payments extends Component {
 	
     onChangeText(e) {
 		var text = e.target.value;
-        var arr = [].concat(appConfig.users.items);
-        var items = arr.filter((el) => el.name.toLowerCase().indexOf(text.toLowerCase()) != -1);
+        var arr = [].concat(this.state.filteredItems);
+        var items = arr.filter((el) => el.cashdesk_system_id.toLowerCase().indexOf(text.toLowerCase()) != -1);
         this.setState({
             items: items,
             resultsCount: items.length,
-            filteredItems: items,
             searchQuery: text
         })
     }
@@ -54,11 +49,8 @@ class Payments extends Component {
 	clearSearchQuery() {
 		this.refs.search.value = '';
 		this.setState({
-			items: appConfig.users.items.slice(0, 20),
-            resultsCount: appConfig.users.items.length,
-            filteredItems: appConfig.users.items,
-			positionY: 0,
-			recordsCount: 20
+			items: this.state.filteredItems,
+			resultsCount: this.state.filteredItems.length
 		});
 	}
 	

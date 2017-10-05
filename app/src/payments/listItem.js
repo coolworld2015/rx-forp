@@ -40,13 +40,13 @@ class ListItem extends Component {
 			<div className="listItem">
 				<div className="phone" onClick={this.clickOnItem.bind(this)}>
 					{this.props.item.cashdesk_system_id}
-					{' ('}
+					{' - ('}
 					{createDate}
-					{') ('}						
-					{updateDate}
-					{') '}
+					{') - '}
 					{city}
-					{' - '}					
+					{' - ('}						
+					{updateDate}
+					{') - '}					
 					{((+this.props.item.amount).toFixed(2)).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ")} 
 					{' - '}
 					{payStatus} 
