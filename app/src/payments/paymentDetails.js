@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {hashHistory} from 'react-router';
 import Title from '../app/title';
 
-class UserDelete extends Component {
+class PaymentDetails extends Component {
     constructor(props) {
         super(props);
 		
@@ -49,18 +49,34 @@ class UserDelete extends Component {
             }) 
     }
 	
-	goUsers() {
-		hashHistory.push("/users");
+	goBack() {
+		hashHistory.push("/payments");
 	}
 	
     render() {
-		var errorCtrl, loading;
+		let loading, city, payStatus, createDate, updateDate;
 		
-        if (this.state.serverError) {
-            errorCtrl = <div className="error">
-				Something went wrong.
-			</div>;
-        }
+		if (this.props.routeParams.created) {
+			let date = new Date(+this.props.routeParams.created);
+			createDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes();
+		}		
+		
+		if (this.props.routeParams.updated) {
+			let date = new Date(+this.props.routeParams.updated);
+			updateDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes();
+			console.log(date)
+		}
+		
+		switch (this.props.routeParams.status) {
+            case 'payout': payStatus = 'Выплачен'; break;
+            case 'create': payStatus = 'Создан'; break;
+		}		
+		
+		switch (this.props.routeParams.city) {
+            case '1': city = 'Киев'; break;
+            case '2': city = 'Полтава'; break;
+            case '3': city = 'Днепр'; break;
+		}
 		
 		if (this.state.showProgress) {
             loading = <div className="loading">
@@ -72,19 +88,23 @@ class UserDelete extends Component {
 			<div>
 				<center>
 				<div className="header">
-					Delete
+					Payment details
 				</div>
 				<hr/>
 				<br/>
  
 				
-				<div className="brandname">
+				<div className="payment-details">
 					<br/>
-						Are you sure you want to delete {this.props.routeParams.name}?
+						ID: {this.props.routeParams.id}<br/>
+						Created: {createDate}<br/>
+						Updated: {updateDate}<br/>
+						City: {city}<br/>
+						Amount: {((+this.props.routeParams.amount).toFixed(2)).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ")} <br/>
+						Status: {payStatus}
 					<br/><br/>
 				</div>
 				
-				{errorCtrl}
 				{loading}
 				
 				<div className="showButtons1">
@@ -93,12 +113,12 @@ class UserDelete extends Component {
 					<hr/>
 					<br/>
 					<button className="button"
-						onClick={this.deleteItem.bind(this)}>
-						Delete
+						onClick={this.goBack.bind(this)}>
+						Submit
 					</button>
 	
 					<button className="button"
-						onClick={this.goUsers.bind(this)}>
+						onClick={this.goBack.bind(this)}>
 						Back
 					</button>
 					<br/>
@@ -112,4 +132,4 @@ class UserDelete extends Component {
     }
 }
 
-export default UserDelete;
+export default PaymentDetails;

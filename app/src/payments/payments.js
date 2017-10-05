@@ -108,23 +108,18 @@ class Payments extends Component {
                 <ListItem
                     key={item.cashdesk_system_id}
                     item={item}
-                    clickHandle={this.clickHandle.bind(this)}/>
+                    clickHandle={this.paymentDetails.bind(this)}/>
             )
         })
     }
 
-    clickHandle(item) {
-		appConfig.users.item = {
-			id: item.id,
-			name: item.name,
-			pass: item.pass,
-			description: item.description
-		};
-        hashHistory.push("/payment-details/");
-    }
-    
-	goAdd() {
-        hashHistory.push("/payment-add/");
+    paymentDetails(item) {
+		hashHistory.push("/payment-details/" + item.cashdesk_system_id + 
+						"/" + item.created + 
+						"/" + item.updated + 
+						"/" + item.sender.cashdesk.city_id + 
+						"/" + item.amount + 
+						"/" + item.status);
     }
 	
 	goToMain() {

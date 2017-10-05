@@ -96,7 +96,7 @@ class Login extends Component {
         }
 		
         if (this.state.showProgress) {
-            loading = <div className="loading">
+            loading = <div className="loading-header">
                 <span>Loading...</span>
             </div>;
         }

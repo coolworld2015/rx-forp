@@ -12,16 +12,15 @@ class ListItem extends Component {
     }
 
     render() {
-		var city, payStatus, createDate, updateDate;
-		var d = new Date(this.props.item.currency.replace(/(\d\d)(\d\d)(\d\d\d\d)/, '$3-$1-$2'));
+		let city, payStatus, createDate, updateDate;
 		
 		if (this.props.item.created) {
-			let date = new Date(this.props.item.created)
+			let date = new Date(this.props.item.created);
 			createDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes();
 		}		
 		
 		if (this.props.item.updated) {
-			let date = new Date(this.props.item.created)
+			let date = new Date(this.props.item.updated);
 			updateDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes();
 		}
 		
@@ -35,7 +34,8 @@ class ListItem extends Component {
             case '2': city = 'Полтава'; break;
             case '3': city = 'Днепр'; break;
 		}
-		
+					//{' - '}
+					//{this.props.item.currency} 	
         return (
 			<div className="listItem">
 				<div className="phone" onClick={this.clickOnItem.bind(this)}>
@@ -48,8 +48,6 @@ class ListItem extends Component {
 					{city}
 					{' - '}					
 					{((+this.props.item.amount).toFixed(2)).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ")} 
-					{' - '}
-					{this.props.item.currency} 			
 					{' - '}
 					{payStatus} 
 					
