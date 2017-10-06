@@ -9,7 +9,8 @@ class Payments extends Component {
 
         this.state = {
             showProgress: false,
-            items: []
+            items: [],
+			resultsCount: 0
         };
     }
 	
