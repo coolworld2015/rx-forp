@@ -23,7 +23,7 @@
 		});
 		
 		Vue.component('phones-items', {
-			template: `	<div>
+			template: `	<div class="search-results-content">
 							<div class="payment" v-for="item in items">
 								<div class="search-results-item search-results-choose"><span class="circle"></span></div>
 								<div class="search-results-item search-results-sender">{{ item.name }}</div>
