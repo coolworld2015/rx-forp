@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Layout squeeze</title>
+	
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="sprite" style="display: none">
+		<symbol viewBox="0 0 486.742 486.742" id="graph">
+			<path d="M33,362.371v78.9c0,4.8,3.9,8.8,8.8,8.8h61c4.8,0,8.8-3.9,8.8-8.8v-138.8l-44.3,44.3
+				C57.9,356.071,45.9,361.471,33,362.371z"/>
+			<path d="M142,301.471v139.8c0,4.8,3.9,8.8,8.8,8.8h61c4.8,0,8.8-3.9,8.8-8.8v-82.3c-13.9-0.3-26.9-5.8-36.7-15.6L142,301.471z"/>
+			<path d="M251,350.271v91c0,4.8,3.9,8.8,8.8,8.8h61c4.8,0,8.8-3.9,8.8-8.8v-167.9l-69.9,69.9
+				C257,345.971,254.1,348.271,251,350.271z"/>
+			<path d="M432.7,170.171l-72.7,72.7v198.4c0,4.8,3.9,8.8,8.8,8.8h61c4.8,0,8.8-3.9,8.8-8.8v-265.6c-2-1.7-3.5-3.2-4.6-4.2
+				L432.7,170.171z"/>
+			<path d="M482.6,41.371c-2.9-3.1-7.3-4.7-12.9-4.7c-0.5,0-1.1,0-1.6,0c-28.4,1.3-56.7,2.7-85.1,4c-3.8,0.2-9,0.4-13.1,4.5
+				c-1.3,1.3-2.3,2.8-3.1,4.6c-4.2,9.1,1.7,15,4.5,17.8l7.1,7.2c4.9,5,9.9,10,14.9,14.9l-171.6,171.7l-77.1-77.1
+				c-4.6-4.6-10.8-7.2-17.4-7.2c-6.6,0-12.7,2.6-17.3,7.2L7.2,286.871c-9.6,9.6-9.6,25.1,0,34.7l4.6,4.6c4.6,4.6,10.8,7.2,17.4,7.2
+				s12.7-2.6,17.3-7.2l80.7-80.7l77.1,77.1c4.6,4.6,10.8,7.2,17.4,7.2c6.6,0,12.7-2.6,17.4-7.2l193.6-193.6l21.9,21.8
+				c2.6,2.6,6.2,6.2,11.7,6.2c2.3,0,4.6-0.6,7-1.9c1.6-0.9,3-1.9,4.2-3.1c4.3-4.3,5.1-9.8,5.3-14.1c0.8-18.4,1.7-36.8,2.6-55.3
+				l1.3-27.7C487,49.071,485.7,44.571,482.6,41.371z"/>
+		</symbol>
+		<symbol viewBox="0 0 350 350" id="user">
+			<path d="M175,171.173c38.914,0,70.463-38.318,70.463-85.586C245.463,38.318,235.105,0,175,0s-70.465,38.318-70.465,85.587
+			C104.535,132.855,136.084,171.173,175,171.173z"/>
+			<path d="M41.909,301.853C41.897,298.971,41.885,301.041,41.909,301.853L41.909,301.853z"/>
+			<path d="M308.085,304.104C308.123,303.315,308.098,298.63,308.085,304.104L308.085,304.104z"/>
+			<path d="M307.935,298.397c-1.305-82.342-12.059-105.805-94.352-120.657c0,0-11.584,14.761-38.584,14.761
+				s-38.586-14.761-38.586-14.761c-81.395,14.69-92.803,37.805-94.303,117.982c-0.123,6.547-0.18,6.891-0.202,6.131
+				c0.005,1.424,0.011,4.058,0.011,8.651c0,0,19.592,39.496,133.08,39.496c113.486,0,133.08-39.496,133.08-39.496
+				c0-2.951,0.002-5.003,0.005-6.399C308.062,304.575,308.018,303.664,307.935,298.397z"/>
+		</symbol>
+		<symbol viewBox="0 0 256.61 256.61" id="documents">
+			<path d="M60.859,112.533c-6.853,0-6.853,10.646,0,10.646c27.294,0,54.583,0,81.875,0c6.865,0,6.865-10.646,0-10.646
+				C115.442,112.533,88.153,112.533,60.859,112.533z"/>
+			<path d="M142.734,137.704c-27.292,0-54.581,0-81.875,0c-6.853,0-6.853,10.634,0,10.634c27.294,0,54.583,0,81.875,0
+				C149.6,148.338,149.6,137.704,142.734,137.704z"/>
+			<path d="M142.734,161.018c-27.292,0-54.581,0-81.875,0c-6.853,0-6.853,10.633,0,10.633c27.294,0,54.583,0,81.875,0
+				C149.6,171.65,149.6,161.018,142.734,161.018z"/>
+			<path d="M142.734,186.184c-27.292,0-54.581,0-81.875,0c-6.853,0-6.853,10.629,0,10.629c27.294,0,54.583,0,81.875,0
+				C149.6,196.812,149.6,186.184,142.734,186.184z"/>
+			<path d="M141.17,209.934c-27.302,0-54.601,0-81.89,0c-6.848,0-6.848,10.633,0,10.633c27.289,0,54.588,0,81.89,0
+				C148.015,220.566,148.015,209.934,141.17,209.934z"/>
+			<path d="M25.362,58.087V256.61h152.877V85.63l-28.406-27.543H25.362z M165.026,243.393H38.585V71.305h104.443v20.97h21.988
+				v151.118H165.026z"/>
+			<polygon points="51.204,27.667 51.204,50.645 64.427,50.645 64.427,40.88 168.875,40.88 168.875,61.85 190.868,61.85 
+				190.868,212.971 185.059,212.971 185.059,226.188 204.086,226.188 204.086,55.205 175.68,27.667"/>
+			<polygon points="202.837,0 78.363,0 78.363,22.983 91.581,22.983 91.581,13.218 196.032,13.218 196.032,34.188 218.025,34.188 
+				218.025,185.306 212.221,185.306 212.221,198.523 231.248,198.523 231.248,27.543"/>
+		</symbol>
+		<symbol viewBox="0 0 55.5 55.5" id="credit_card">
+			<path d="M48.83,8.583H6.67C2.992,8.583,0,11.575,0,15.252v24.996c0,3.677,2.992,6.668,6.67,6.668h42.16
+			c3.678,0,6.67-2.991,6.67-6.668V15.252C55.5,11.575,52.508,8.583,48.83,8.583z M6.67,10.583h42.16c2.574,0,4.67,2.095,4.67,4.669H2
+			C2,12.679,4.095,10.583,6.67,10.583z M48.83,44.917H6.67c-2.575,0-4.67-2.095-4.67-4.668V22.245h51.5v18.003
+			C53.5,42.822,51.404,44.917,48.83,44.917z"/>
+		</symbol>
+		<symbol viewBox="0 0 268.832 268.832" id="arrow">
+			<path d="M265.171,125.577l-80-80c-4.881-4.881-12.797-4.881-17.678,0c-4.882,4.882-4.882,12.796,0,17.678l58.661,58.661H12.5
+			c-6.903,0-12.5,5.597-12.5,12.5c0,6.902,5.597,12.5,12.5,12.5h213.654l-58.659,58.661c-4.882,4.882-4.882,12.796,0,17.678
+			c2.44,2.439,5.64,3.661,8.839,3.661s6.398-1.222,8.839-3.661l79.998-80C270.053,138.373,270.053,130.459,265.171,125.577z"/>
+		</symbol>
+		<symbol viewBox="0 0 512 512" id="question">
+			<path d="M256,0C114.609,0,0,114.609,0,256c0,141.391,114.609,256,256,256c141.391,0,256-114.609,256-256
+				C512,114.609,397.391,0,256,0z M256,472c-119.297,0-216-96.703-216-216S136.703,40,256,40s216,96.703,216,216S375.297,472,256,472
+				z"/>
+			<rect x="240" y="352" width="32" height="32"/>
+			<path d="M317.734,150.148c-6.484-6.625-14.688-11.922-24.767-16.031c-10.202-4.102-22.172-6.117-36.28-6.117
+				c-11.97,0-22.875,2.016-32.781,6.117c-9.938,4.109-18.5,9.773-25.688,17.125c-7.125,7.289-12.672,14.508-16.5,24.773
+				C177.906,186.281,176,192,176,208h32.656c0-16,4.234-28.109,12.938-38.516c8.594-10.453,20.266-14.82,35.093-14.82
+				c14.438,0,25.234,3.914,32.172,10.938c6.875,7.023,10.392,17.086,10.392,29.797c0,9.883-3.25,18.758-9.733,26.492
+				c-6.375,7.75-13.359,15.297-20.845,22.438c-7.594,7.141-13.672,14.766-19.953,22.641c-6.281,7.875-8.72,17.046-8.72,27.499V320h32
+				v-13.75c0-8.203,1.203-15.312,4.406-21.516c3.094-6.219,6.953-11.859,11.844-16.892c4.734-5.094,9.812-10,15.469-14.828
+				c5.5-4.766,10.781-9.859,15.531-15.172c4.844-5.344,8.875-11.344,11.938-17.969c3.22-6.625,4.828-14.406,4.828-23.477
+				c0-7.875-1.422-15.891-4.391-24.039C328.719,164.148,324.031,156.766,317.734,150.148z"/>
+		</symbol>
+		<symbol viewBox="0 0 510 510" id="message">
+			<path d="M459,0H51C22.95,0,0,22.95,0,51v459l102-102h357c28.05,0,51-22.95,51-51V51C510,22.95,487.05,0,459,0z M408,306H102v-51
+				h306V306z M408,229.5H102v-51h306V229.5z M408,153H102v-51h306V153z"/>
+		</symbol>
+		<symbol viewBox="0 0 384 384" id="close_all">
+			<rect x="42.667" y="170.667" width="298.667" height="42.667"/>
+			<rect x="0" y="256" width="298.667" height="42.667"/>
+			<rect x="85.333" y="85.333" width="298.667" height="42.667"/>
+		</symbol>
+		<symbol viewBox="0 0 491.86 491.86" id="plus">
+			<path d="M465.167,211.614H280.245V26.691c0-8.424-11.439-26.69-34.316-26.69s-34.316,18.267-34.316,26.69v184.924H26.69
+				C18.267,211.614,0,223.053,0,245.929s18.267,34.316,26.69,34.316h184.924v184.924c0,8.422,11.438,26.69,34.316,26.69
+				s34.316-18.268,34.316-26.69V280.245H465.17c8.422,0,26.69-11.438,26.69-34.316S473.59,211.614,465.167,211.614z"/>
+		</symbol>
+		<symbol viewBox="0 0 896.025 896.025" id="gears">
+			<path d="M863.24,382.771l-88.759-14.807c-6.451-26.374-15.857-51.585-28.107-75.099l56.821-70.452
+				c12.085-14.889,11.536-36.312-1.205-50.682l-35.301-39.729c-12.796-14.355-34.016-17.391-50.202-7.165l-75.906,47.716
+				c-33.386-23.326-71.204-40.551-112-50.546l-14.85-89.235c-3.116-18.895-19.467-32.759-38.661-32.759h-53.198
+				c-19.155,0-35.561,13.864-38.608,32.759l-14.931,89.263c-33.729,8.258-65.353,21.588-94.213,39.144l-72.188-51.518
+				c-15.558-11.115-36.927-9.377-50.504,4.171l-37.583,37.61c-13.548,13.577-15.286,34.946-4.142,50.504l51.638,72.326
+				c-17.391,28.642-30.584,60.086-38.841,93.515l-89.743,14.985C13.891,385.888,0,402.24,0,421.435v53.156
+				c0,19.193,13.891,35.547,32.757,38.663l89.743,14.985c6.781,27.508,16.625,53.784,29.709,78.147L95.647,676.44
+				c-12.044,14.875-11.538,36.312,1.203,50.669l35.274,39.73c12.797,14.382,34.028,17.363,50.216,7.163l77-48.37
+				c32.581,22.285,69.44,38.664,108.993,48.37l14.931,89.25c3.048,18.896,19.453,32.76,38.608,32.76h53.198
+				c19.194,0,35.545-13.863,38.661-32.759l14.875-89.25c33.308-8.147,64.531-21.245,93.134-38.5l75.196,53.705
+				c15.53,11.155,36.915,9.405,50.478-4.186l37.598-37.597c13.532-13.536,15.365-34.893,4.127-50.479l-53.536-75.059
+				c17.441-28.738,30.704-60.238,38.909-93.816l88.758-14.82c18.921-3.116,32.756-19.469,32.756-38.663v-53.156
+				C895.998,402.24,882.163,385.888,863.24,382.771z M449.42,616.013c-92.764,0-168-75.25-168-168c0-92.764,75.236-168,168-168
+				c92.748,0,167.998,75.236,167.998,168C617.418,540.763,542.168,616.013,449.42,616.013z"/>
+		</symbol>
+		<symbol viewBox="0 0 47.834 47.834" id="ring">
+			<path d="M46.878,41.834H0.956l0.005-1.005c0.021-4.065,2.87-7.548,6.759-8.437V20.697C7.72,11.766,14.985,4.5,23.916,4.5
+				c8.932,0,16.198,7.266,16.198,16.197v11.695c3.889,0.89,6.737,4.372,6.759,8.437L46.878,41.834z M3.042,39.834h41.75
+				c-0.458-2.908-2.804-5.241-5.8-5.61l-0.878-0.107V20.697c0-7.828-6.369-14.197-14.198-14.197C16.088,6.5,9.72,12.869,9.72,20.697
+				v13.419l-0.878,0.107C5.845,34.592,3.5,36.925,3.042,39.834z"/>
+			<path d="M21.125,5.988h-2V4.792C19.125,2.149,21.274,0,23.917,0c2.642,0,4.791,2.149,4.791,4.792v1.176h-2V4.792
+				C26.708,3.253,25.456,2,23.917,2c-1.539,0-2.792,1.253-2.792,2.792V5.988z"/>
+			<path d="M23.903,47.834c-3.941,0-7.375-2.799-8.164-6.656l1.959-0.4c0.6,2.93,3.209,5.057,6.205,5.057
+				c3.058,0,5.677-2.179,6.228-5.18l1.967,0.361C31.373,44.967,27.927,47.834,23.903,47.834z"/>
+			<rect x="8.72" y="32.231" width="3.682" height="2"/>
+			<rect x="18.167" y="32.231" width="20.947" height="2"/>
+		</symbol>
+		<symbol viewBox="0 0 47.971 47.971" id="close">
+			<path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88
+			c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242
+			C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879
+			s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z"/>
+		</symbol>
+		<symbol viewBox="0 0 60 60" id="flag">
+		<path d="M51.371,3.146c-0.203-0.081-5.06-1.997-10.815-1.997c-3.434,0-6.47,0.687-9.024,2.042C29.269,4.392,26.199,5,22.407,5
+			C17.099,5,11.865,3.788,10,3.307V1c0-0.553-0.447-1-1-1S8,0.447,8,1v3c0,0.014,0.007,0.026,0.008,0.04C8.008,4.052,8,4.062,8,4.074V33v1.074V59c0,0.553,0.447,1,1,1s1-0.447,1-1V35.373C12.273,35.937,17.243,37,22.407,37c4.122,0,7.507-0.688,10.062-2.042
+			c2.263-1.201,4.983-1.81,8.087-1.81c5.357,0,10.027,1.836,10.073,1.854c0.309,0.124,0.657,0.086,0.932-0.102
+			C51.835,34.716,52,34.406,52,34.074v-30C52,3.665,51.751,3.298,51.371,3.146z"/>
+		</symbol>
+		<symbol viewBox="0 0 129 129" id="cancel">
+			<path d="M64.5,6.5c-32,0-58,26-58,58c0,15.9,6.4,30.3,16.8,40.8c0,0,0.1,0.1,0.1,0.2c0,0,0.1,0,0.1,0.1c10.5,10.5,25,17,41,17   c32,0,58-26,58-58S96.5,6.5,64.5,6.5z M14.6,64.5C14.6,37,37,14.7,64.5,14.7c12.3,0,23.5,4.5,32.2,11.8L26.5,96.7   C19.1,88,14.6,76.8,14.6,64.5z M64.5,114.4c-12.3,0-23.6-4.5-32.3-11.9l70.2-70.2c7.4,8.7,11.9,20,11.9,32.3   C114.4,92,92,114.4,64.5,114.4z"/>
+		</symbol>
+		<symbol viewBox="0 0 292.362 292.362" id="triangle">
+			<path d="M286.935,69.377c-3.614-3.617-7.898-5.424-12.848-5.424H18.274c-4.952,0-9.233,1.807-12.85,5.424
+			C1.807,72.998,0,77.279,0,82.228c0,4.948,1.807,9.229,5.424,12.847l127.907,127.907c3.621,3.617,7.902,5.428,12.85,5.428
+			s9.233-1.811,12.847-5.428L286.935,95.074c3.613-3.617,5.427-7.898,5.427-12.847C292.362,77.279,290.548,72.998,286.935,69.377z"/>
+		</symbol>
+		<symbol viewBox="0 0 451.847 451.847" id="sortSign">
+			<path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751
+			c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0
+			c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"/>
+		</symbol>
+		<symbol viewBox="0 0 56.966 56.966" id="maginifierTool">
+			<path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23
+			s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92
+			c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17
+			s-17-7.626-17-17S14.61,6,23.984,6z"/>
+		</symbol>
+	</svg>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.3/vue-resource.min.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	
+	<script src="payments.js"></script>
+	<script src="phones.js"></script>
+</head>
+<body class="squeeze">
+	<div class="wrapper" id="app">
+		<div class="dark-screen">
+			<div class="hot-keys">
+				<header class="h4">Гарячі клавіші</header>
+				<div class="hot-keys-content">
+					<span class="br">На екрані ви бачите підказки гарячих клавіш підсвічені для деяких функцій.</span>
+					<span class="br">Як використовувати?</span>
+					<span class="br">Тримайте затисненою клавішу <span class="bordered">ALT</span> і натисніть потрібну гарячу клавішу на клавіатурі.</span>
+				</div>
+			</div>
+		</div>
+		
+		<aside class="navigation-sidebar">
+		<nav class="h-100 fp-navbar">
+			<ul class="h-100 fp-nav-left">
+				<li class="fp-nav-item fp-nav-item-left li-border-bottom">
+					<a class="fp-nav-link" href="#" id="showNav">FP</a>
+					<span class="hot-key-hint">~</span>
+				</li>
+				<li class="fp-nav-item fp-nav-item-left">
+					<a class="fp-nav-link" href="#"></a>
+					<span class="hot-key-hint">1</span>
+				</li>
+				<li class="fp-nav-item fp-nav-item-left active">
+					<a class="fp-nav-link" href="#">М</a>
+					<span class="hot-key-hint">2</span>
+				</li>
+				<li class="fp-nav-item fp-nav-item-left">
+					<a class="fp-nav-link" href="#">Е</a>
+				</li>
+				<li class="fp-nav-item fp-nav-item-left">
+					<a class="fp-nav-link" href="#">Б</a>
+					<span class="hot-key-hint">4</span>
+				</li>
+				<li class="fp-nav-item fp-nav-item-left">
+					<a class="fp-nav-link" href="#">Б+</a>
+					<span class="hot-key-hint">5</span>
+				</li>
+				<li class="fp-nav-item fp-nav-item-left hovered">
+					<a class="fp-nav-link" href="#">2</a>
+					<span class="hot-key-hint">6</span>
+				</li>
+				<li class="fp-nav-item fp-nav-item-left li-border-bottom">
+					<a class="fp-nav-link" href="#">І</a>
+					<span class="hot-key-hint">7</span>
+				</li>
+				<li class="fp-nav-item fp-nav-item-left">
+					<img src="">
+				</li>
+				<li class="fp-nav-item fp-nav-item-left">
+					<a class="fp-nav-link" href="#">РО</a>
+					<span class="hot-key-hint">8</span>
+				</li>
+				<li class="fp-nav-item fp-nav-item-left li-border-bottom">
+					<a class="fp-nav-link" href="#">КК</a>
+					<span class="hot-key-hint">9</span>
+				</li>
+			</ul>
+			<ul class="h-100 fp-nav-right">
+				<li class="fp-nav-item fp-nav-item-right fp-nav-close li-border-bottom">
+					<a class="fp-nav-link" href="#" id="hideNav">&#x2715</a>
+				</li>
+				<li class="fp-nav-item fp-nav-item-right">
+					<a class="fp-nav-link menu-block-header" href="#">Платежі</a>
+				</li>
+				<li class="fp-nav-item fp-nav-item-right active">
+					<a class="fp-nav-link" href="#">Миттєвий</a>
+				</li>
+				<li class="fp-nav-item fp-nav-item-right">
+					<a class="fp-nav-link" href="#">Експрес</a>
+				</li>
+				<li class="fp-nav-item fp-nav-item-right">
+					<a class="fp-nav-link" href="#">Безготівковий</a>
+				</li>
+				<li class="fp-nav-item fp-nav-item-right">
+					<a class="fp-nav-link" href="#">Безготівковий+</a>
+				</li>
+				<li class="fp-nav-item fp-nav-item-right hovered">
+					<a class="fp-nav-link" href="#">Cash2Card</a>
+				</li>
+				<li class="fp-nav-item fp-nav-item-right li-border-bottom">
+					<a class="fp-nav-link" href="#">Інтернет еквайринг</a>
+				</li>
+				<li class="fp-nav-item fp-nav-item-right">
+					<a class="fp-nav-link menu-block-header" href="#">Реєстр операцій</a>
+				</li>
+				<li class="fp-nav-item fp-nav-item-right">
+					<a class="fp-nav-link" href="#">Реєстр операцій</a>
+				</li>
+				<li class="fp-nav-item fp-nav-item-right li-border-bottom">
+					<a class="fp-nav-link" href="#">Касова книга</a>
+				</li>
+			</ul>
+		</nav>
+	</aside>
+	
+	<div class="content">
+		<header class="header d-flex justify-content-center align-items-center">
+
+			<form action="/" class="search-form" id="search">
+				<input type="text" class="form-control" placeholder="Пошук платежу">
+				<svg class="search-form-svg"><use xlink:href="#maginifierTool"></use></svg>
+				<span class="hot-key-hint hot-key-hint--left">/</span>
+			</form>
+
+			<div class="notifiers">
+				<button class="system-button" id="add-messages">
+					<span class="dotted-circle d-flex justify-content-center align-items-center">
+						<svg class="plus-svg"><use xlink:href="#plus"></use></svg>
+					</span>
+					<span class="hot-key-hint hot-key-hint--bottom">д</span>
+				</button>
+				<button class="system-button ring" id="showNotifications">
+					<span class="ring-circle d-flex justify-content-center align-items-center">
+						<svg class="ring-svg"><use xlink:href="#ring"></use></svg>
+					</span>
+					<span class="hot-key-hint hot-key-hint--bottom">с</span>
+				</button>
+				<button class="system-button profile">
+					<img src="img/profile.jpg" alt="profile" class="profile-photo">
+					<span class="hot-key-hint hot-key-hint--bottom">я</span>
+				</button>
+			</div>
+		</header>
+
+		<main>
+			<section class="search-results">
+				<header class="search-results-header">
+					<div class="search-results-item search-results-choose">
+						<svg class="search-header-svg"><use xlink:href="#sortSign"></use></svg>
+					</div>
+					<div class="search-results-item search-results-sender">Відправник
+						<svg class="search-header-svg"><use xlink:href="#sortSign"></use></svg>
+					</div>
+					<div class="search-results-item search-results-product">Продукт
+						<svg class="search-header-svg"><use xlink:href="#sortSign"></use></svg>
+					</div>
+					<div class="search-results-item search-results-transfer">Номер переказу
+						<svg class="search-header-svg"><use xlink:href="#sortSign"></use></svg>
+					</div>
+					<div class="search-results-item search-results-currency">Валюта
+						<svg class="search-header-svg"><use xlink:href="#sortSign"></use></svg>
+					</div>
+					<div class="search-results-item search-results-amount">Сума
+						<svg class="search-header-svg"><use xlink:href="#sortSign"></use></svg>
+					</div>
+					<div class="search-results-item search-results-date">Дата
+						<svg class="search-header-svg"><use xlink:href="#sortSign"></use></svg>
+					</div>
+					<div class="search-results-item search-results-result">Дійсний
+						<svg class="search-header-svg"><use xlink:href="#sortSign"></use></svg>
+					</div>
+					<div class="search-results-item search-results-status">Статус
+						<svg class="search-header-svg"><use xlink:href="#sortSign"></use></svg>
+					</div>
+					<div class="search-results-item search-results-other">
+						<svg class="search-header-svg"><use xlink:href="#sortSign"></use></svg>
+					</div>
+				</header>
+				<div class="search-results-content">
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Microsoft Corporation</div>
+						<div class="search-results-item search-results-product">Бізнес</div>
+						<div class="search-results-item search-results-transfer">2565755428983</div>
+						<div class="search-results-item search-results-currency">USD</div>
+						<div class="search-results-item search-results-amount">1000000.00</div>
+						<div class="search-results-item search-results-date">15 Жовтня 2017</div>
+						<div class="search-results-item search-results-result payout">
+							<span class="search-results-icon"></span>
+							--
+						</div>
+						<div class="search-results-item search-results-status payout">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Виплачено
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Іванченко Василь Васильович</div>
+						<div class="search-results-item search-results-product">Приватний</div>
+						<div class="search-results-item search-results-transfer">2845675957283</div>
+						<div class="search-results-item search-results-currency">UAH</div>
+						<div class="search-results-item search-results-amount">1050.00</div>
+						<div class="search-results-item search-results-date">17 Вересня 2017</div>
+						<div class="search-results-item search-results-result middle-term">
+							<span class="search-results-icon"></span>
+							14 днів
+						</div>
+						<div class="search-results-item search-results-status active">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Активний
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Шевченко Ольга Василівна</div>
+						<div class="search-results-item search-results-product">Приватний</div>
+						<div class="search-results-item search-results-transfer">2155684289524</div>
+						<div class="search-results-item search-results-currency">UAH</div>
+						<div class="search-results-item search-results-amount">2568.00</div>
+						<div class="search-results-item search-results-date">01 Жовтня 2017</div>
+						<div class="search-results-item search-results-result long-term">
+							<span class="search-results-icon"></span>
+							30 днів
+						</div>
+						<div class="search-results-item search-results-status active">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Активний
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Ковальов Денис Сергійович</div>
+						<div class="search-results-item search-results-product">Приватний</div>
+						<div class="search-results-item search-results-transfer">2155484965165</div>
+						<div class="search-results-item search-results-currency">USD</div>
+						<div class="search-results-item search-results-amount">5000.00</div>
+						<div class="search-results-item search-results-date">30 Червня 2017</div>
+						<div class="search-results-item search-results-result payout">
+							<span class="search-results-icon"></span>
+							--
+						</div>
+						<div class="search-results-item search-results-status returned">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Повернуто
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Андрійчук Андрій Андрійович</div>
+						<div class="search-results-item search-results-product">Приватний</div>
+						<div class="search-results-item search-results-transfer">2535456456585</div>
+						<div class="search-results-item search-results-currency">UAH</div>
+						<div class="search-results-item search-results-amount">980.00</div>
+						<div class="search-results-item search-results-date">15 Вересня 2017</div>
+						<div class="search-results-item search-results-result short-term">
+							<span class="search-results-icon"></span>
+							10 днів
+						</div>
+						<div class="search-results-item search-results-status active">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Активний
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Microsoft Corporation</div>
+						<div class="search-results-item search-results-product">Бізнес</div>
+						<div class="search-results-item search-results-transfer">2565755428983</div>
+						<div class="search-results-item search-results-currency">USD</div>
+						<div class="search-results-item search-results-amount">1000000.00</div>
+						<div class="search-results-item search-results-date">15 Жовтня 2017</div>
+						<div class="search-results-item search-results-result payout">
+							<span class="search-results-icon"></span>
+							--
+						</div>
+						<div class="search-results-item search-results-status payout">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Виплачено
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Іванченко Василь Васильович</div>
+						<div class="search-results-item search-results-product">Приватний</div>
+						<div class="search-results-item search-results-transfer">2845675957283</div>
+						<div class="search-results-item search-results-currency">UAH</div>
+						<div class="search-results-item search-results-amount">1050.00</div>
+						<div class="search-results-item search-results-date">17 Вересня 2017</div>
+						<div class="search-results-item search-results-result middle-term">
+							<span class="search-results-icon"></span>
+							14 днів
+						</div>
+						<div class="search-results-item search-results-status active">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Активний
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Шевченко Ольга Василівна</div>
+						<div class="search-results-item search-results-product">Приватний</div>
+						<div class="search-results-item search-results-transfer">2155684289524</div>
+						<div class="search-results-item search-results-currency">UAH</div>
+						<div class="search-results-item search-results-amount">2568.00</div>
+						<div class="search-results-item search-results-date">01 Жовтня 2017</div>
+						<div class="search-results-item search-results-result long-term">
+							<span class="search-results-icon"></span>
+							30 днів
+						</div>
+						<div class="search-results-item search-results-status active">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Активний
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Ковальов Денис Сергійович</div>
+						<div class="search-results-item search-results-product">Приватний</div>
+						<div class="search-results-item search-results-transfer">2155484965165</div>
+						<div class="search-results-item search-results-currency">USD</div>
+						<div class="search-results-item search-results-amount">5000.00</div>
+						<div class="search-results-item search-results-date">30 Червня 2017</div>
+						<div class="search-results-item search-results-result payout">
+							<span class="search-results-icon"></span>
+							--
+						</div>
+						<div class="search-results-item search-results-status returned">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Повернуто
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Андрійчук Андрій Андрійович</div>
+						<div class="search-results-item search-results-product">Приватний</div>
+						<div class="search-results-item search-results-transfer">2535456456585</div>
+						<div class="search-results-item search-results-currency">UAH</div>
+						<div class="search-results-item search-results-amount">980.00</div>
+						<div class="search-results-item search-results-date">15 Вересня 2017</div>
+						<div class="search-results-item search-results-result short-term">
+							<span class="search-results-icon"></span>
+							10 днів
+						</div>
+						<div class="search-results-item search-results-status active">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Активний
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Microsoft Corporation</div>
+						<div class="search-results-item search-results-product">Бізнес</div>
+						<div class="search-results-item search-results-transfer">2565755428983</div>
+						<div class="search-results-item search-results-currency">USD</div>
+						<div class="search-results-item search-results-amount">1000000.00</div>
+						<div class="search-results-item search-results-date">15 Жовтня 2017</div>
+						<div class="search-results-item search-results-result payout">
+							<span class="search-results-icon"></span>
+							--
+						</div>
+						<div class="search-results-item search-results-status payout">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Виплачено
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Іванченко Василь Васильович</div>
+						<div class="search-results-item search-results-product">Приватний</div>
+						<div class="search-results-item search-results-transfer">2845675957283</div>
+						<div class="search-results-item search-results-currency">UAH</div>
+						<div class="search-results-item search-results-amount">1050.00</div>
+						<div class="search-results-item search-results-date">17 Вересня 2017</div>
+						<div class="search-results-item search-results-result middle-term">
+							<span class="search-results-icon"></span>
+							14 днів
+						</div>
+						<div class="search-results-item search-results-status active">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Активний
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Шевченко Ольга Василівна</div>
+						<div class="search-results-item search-results-product">Приватний</div>
+						<div class="search-results-item search-results-transfer">2155684289524</div>
+						<div class="search-results-item search-results-currency">UAH</div>
+						<div class="search-results-item search-results-amount">2568.00</div>
+						<div class="search-results-item search-results-date">01 Жовтня 2017</div>
+						<div class="search-results-item search-results-result long-term">
+							<span class="search-results-icon"></span>
+							30 днів
+						</div>
+						<div class="search-results-item search-results-status active">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Активний
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Ковальов Денис Сергійович</div>
+						<div class="search-results-item search-results-product">Приватний</div>
+						<div class="search-results-item search-results-transfer">2155484965165</div>
+						<div class="search-results-item search-results-currency">USD</div>
+						<div class="search-results-item search-results-amount">5000.00</div>
+						<div class="search-results-item search-results-date">30 Червня 2017</div>
+						<div class="search-results-item search-results-result payout">
+							<span class="search-results-icon"></span>
+							--
+						</div>
+						<div class="search-results-item search-results-status returned">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Повернуто
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+					<div class="payment">
+						<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+						<div class="search-results-item search-results-sender">Андрійчук Андрій Андрійович</div>
+						<div class="search-results-item search-results-product">Приватний</div>
+						<div class="search-results-item search-results-transfer">2535456456585</div>
+						<div class="search-results-item search-results-currency">UAH</div>
+						<div class="search-results-item search-results-amount">980.00</div>
+						<div class="search-results-item search-results-date">15 Вересня 2017</div>
+						<div class="search-results-item search-results-result short-term">
+							<span class="search-results-icon"></span>
+							10 днів
+						</div>
+						<div class="search-results-item search-results-status active">
+							<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+							Активний
+						</div>
+						<div class="search-results-item search-results-other">...</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="activated-payments d-flex justify-content-start align-items-center" id="activatedPayments">
+				<div class="activated-payments-item">
+					<span class="selected-payments" id="activatedPaymentsBox">3</span>
+					Платежів вибрано
+				</div>
+				<div class="activated-payments-item">
+					<button class="" id="cancelSelection">
+						<svg class="activated-payments-svg"><use xlink:href="#cancel"></use></svg>
+						Відмінити
+					</button>
+				</div>
+				<div class="activated-payments-item">
+					<button id="showTrusted">
+					<svg class="activated-payments-svg"><use xlink:href="#flag"></use></svg>
+					Відмінити довірені
+					<svg class="activated-payments-svg activated-payments-svg--end"><use xlink:href="#triangle"></use></svg>
+					</button>
+				</div>
+				<div class="activated-payments-item">
+					<button id="showTrusted">
+					<svg class="activated-payments-svg"><use xlink:href="#graph"></use></svg>
+					Згенерувати звіт
+					<svg class="activated-payments-svg activated-payments-svg--end"><use xlink:href="#triangle"></use></svg>
+					</button>
+				</div>
+				<div class="search-results-item">
+					<span class="hint">click</span>
+					Виділити
+					<span class="hint">esc</span>
+					Зняти виділення
+				</div> 
+			</section>
+		</main>
+	</div>
+
+	<aside class="notification-sidebar">
+		<div class="notification-panel d-flex flex-column justify-content-start">
+			<header class="notification-header d-flex justify-content-between align-items-center">
+				<button class="system-button" id="closeNotifications">
+					<svg class="close-svg"><use xlink:href="#close"></use></svg>
+					<span class="hot-key-hint hot-key-hint--bottom">ї</span>
+				</button>
+
+				<div class="notifiers">
+					<button class="system-button" id="add-messages">
+						<span class="dotted-circle d-flex justify-content-center align-items-center">
+							<svg class="plus-svg"><use xlink:href="#plus"></use></svg>
+						</span>
+						<span class="hot-key-hint hot-key-hint--bottom">д</span>
+					</button>
+					<button class="system-button ring">
+						<span class="ring-circle d-flex justify-content-center align-items-center">
+							<svg class="ring-svg"><use xlink:href="#ring"></use></svg>
+						</span>
+						<span class="hot-key-hint hot-key-hint--bottom">с</span>
+					</button>
+					<button class="system-button profile">
+						<img src="img/profile.jpg" alt="profile" class="profile-photo">
+						<span class="hot-key-hint hot-key-hint--bottom">я</span>
+					</button>
+				</div>
+
+				<button class="system-button" id="options">
+					<svg class="gears-svg"><use xlink:href="#gears"></use></svg>
+					<span class="hot-key-hint hot-key-hint--bottom">н</span>
+				</button>
+			</header>
+			
+			<div class="notifications">
+				<section class="notifications-content">
+					<header>
+						Важливі!
+						<button class="close-all">
+							<svg class="close-all-svg"><use xlink:href="#close_all"></use></svg>
+						</button>
+					</header>
+					
+					<div class="message message-important">
+						<header class="message-header">
+							<svg class="message-svg"><use xlink:href="#message"></use></svg>
+							<span class="message-header-text bold">РРО недоступний</span>
+							<time>15:14</time>
+						</header>
+						<div class="message-content">
+							Пристрій РРО від'єднано від Касового Місця. Подальша робота касира неможлива!
+						</div>
+						<span class="hot-key-hint">\</span>
+					</div>
+				</section>
+
+				<section class="notifications-content">
+					<header>Сьогодні</header>
+					
+					<div class="message">
+						<header class="message-header">
+							<svg class="message-svg message-svg--question"><use xlink:href="#question"></use></svg>
+							<span class="message-header-text bold">Служба підтримки</span>
+							<time>16:24</time>
+						</header>
+						<div class="message-content">
+							Ваш запит 23452345 було розглянуто.
+						</div>
+					</div>
+					<div class="message">
+						<header class="message-header">
+							<svg class="message-svg message-svg--incomeCall"><use xlink:href="#arrow"></use></svg>
+							<span class="message-header-text bold">Вхідний дзвінок</span>
+							<time>19:48</time>
+						</header>
+					</div>
+					<div class="message">
+						<header class="message-header">
+							<svg class="message-svg message-svg--private"><use xlink:href="#message"></use></svg>
+							<span class="message-header-text bold">Привіт!</span>
+							<time>14:14</time>
+						</header>
+						<div class="message-content">
+							Підкажи, будь-ласка, як переглянути Касову Книгу.
+						</div>
+					</div>
+				</section>
+
+				<section class="notifications-content">
+					<header>Вчора</header>
+					
+					<div class="message">
+						<header class="message-header">
+							<svg class="message-svg message-svg--creditCard"><use xlink:href="#credit_card"></use></svg>
+							<span class="message-header-text bold">Платіж</span>
+							<time>19:01</time>
+						</header>
+						<div class="message-content">
+							Платіж 546465455 успішно виплачено отримувачу.
+						</div>
+					</div>
+					<div class="message">
+						<header class="message-header">
+							<svg class="message-svg message-svg--documents"><use xlink:href="#documents"></use></svg>
+							<span class="message-header-text bold">Документи</span>
+							<time>09:38</time>
+						</header>
+						<div class="message-content">
+							Документи по платежу 331324343 були успішно збережені в системі. При подальшому зверненні клієнта необхідно перевірити актуальніть документів.
+						</div>
+					</div>
+					<div class="message">
+						<header class="message-header">
+							<svg class="message-svg message-svg--user"><use xlink:href="#user"></use></svg>
+							<span class="message-header-text bold">Новий співробітник!</span>
+							<time>17:53</time>
+						</header>
+						<div class="message-content">
+							На вашому відділенні нових співробітник Василь Васильченко.
+						</div>
+					</div>
+					<div class="message">
+						<header class="message-header">
+							<svg class="message-svg message-svg--graph"><use xlink:href="#graph"></use></svg>
+							<span class="message-header-text bold">Тижневий звіт</span>
+							<time>21:00</time>
+						</header>
+						<div class="message-content">
+							Ваш тижневий звіт підготовлено. Будь ласка, ознайомтесь.
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<button class="btn btn-danger servise-desk" id="serviceDesk">
+				Звернутися в техпідтримку
+				<span class="hot-key-hint">п</span>
+			</button>			
+		</div>
+	</aside>
+</div>
+	<script>
+		document.getElementById('showNotifications').addEventListener('click', showHideNotifications);
+		document.getElementById('closeNotifications').addEventListener('click', showHideNotifications);
+
+		document.getElementById('showNav').addEventListener('click', showHideNavigation);
+		document.getElementById('hideNav').addEventListener('click', showHideNavigation);
+
+		document.querySelector('.search-results-content').addEventListener('click', (e) => {
+			if (!e.target.parentElement.classList.contains('payment')) return;
+			e.target.parentElement.classList.toggle('selected');
+			showStatePanel();
+		});
+
+		document.addEventListener('keydown', (e) => {
+		 	if (e.keyCode == 18) {
+		 		document.body.classList.add('modal-screen');
+		 		document.querySelector('.dark-screen').classList.add('visible');
+		 	}
+		});
+
+		document.addEventListener('keyup', (e) => {
+		 	if (e.keyCode == 18) {
+		 		document.body.classList.remove('modal-screen');
+		 		document.querySelector('.dark-screen').classList.remove('visible');
+		 	}
+		});
+
+		function showHideNotifications(e) {			
+			document.querySelector('.notification-sidebar').classList.toggle('shown');
+		}
+
+		function showHideNavigation(e) {
+			// check applied layout (sidebar positioning)
+			if (document.querySelector('.squeeze')) {
+				document.querySelector('.content').classList.toggle('shrunk');
+			}
+
+			document.querySelector('.navigation-sidebar').classList.toggle('shown');
+		}
+
+		function showStatePanel () {
+			const active_payments = document.querySelectorAll('.selected').length;
+
+			if (active_payments) {
+				document.getElementById('activatedPaymentsBox').innerHTML = active_payments;
+				document.getElementById('activatedPayments').classList.add('shown');
+			} else {
+				document.getElementById('activatedPayments').classList.remove('shown');
+			}
+		}
+	</script>
+</body>
+</html>
