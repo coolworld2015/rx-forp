@@ -9,15 +9,14 @@
 		Vue.component('phones-header', {
 			template: `	<header class="search-results-header">
 							<div class="search-results-item search-results-choose"></div>
-							<div class="search-results-item search-results-sender">Відправник</div>
-							<div class="search-results-item search-results-product">Продукт</div>
-							<div class="search-results-item search-results-transfer">Номер переказу</div>
-							<div class="search-results-item search-results-currency">Валюта</div>
-							<div class="search-results-item search-results-amount">Сума</div>
-							<div class="search-results-item search-results-date">Дата</div>
-							<div class="search-results-item search-results-result">Дійсний</div>
-							<div class="search-results-item search-results-status">Статус</div>
-							<div class="search-results-item search-results-other"></div>
+							<div class="search-results-item search-results-sender" style="left: 25px;">ФИО</div>
+							<div class="search-results-item search-results-product">Телефон</div>
+							<div class="search-results-item search-results-sender" style="left: 25px;">Улица</div>
+							<div class="search-results-item search-results-transfer" style="left: -15px;">Дом</div>
+							<div class="search-results-item search-results-amount" style="left: -25px;">Квартира</div>
+ 
+							<div class="search-results-item search-results-result">Индекс</div>
+ 
 						</header>`
 
 		});
@@ -28,19 +27,15 @@
 								<div class="search-results-item search-results-choose"><span class="circle"></span></div>
 								<div class="search-results-item search-results-sender">{{ item.name }}</div>
 								<div class="search-results-item search-results-transfer">{{ item.phone }}</div>
-								<div class="search-results-item search-results-product">{{ item.street }}</div>
-								<div class="search-results-item search-results-currency">{{ item.house }}</div>
+								<div class="search-results-item search-results-sender">{{ item.street }}</div>
+								<div class="search-results-item search-results-transfer">{{ item.house }}</div>
 								<div class="search-results-item search-results-amount">{{ item.apt }}</div>
-								<div class="search-results-item search-results-date">{{ item.phone }}</div>
+ 
 								<div class="search-results-item search-results-result long-term">
 									<span class="search-results-icon"></span>
 									{{ item.index }}
-								</div>
-								<div class="search-results-item search-results-status active">
-									<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
-									{{ item.id }}
-								</div>
-								<div class="search-results-item search-results-other">...</div>
+								</div> 
+ 
 							</div>
 						</div>`,
 			data: function () {
