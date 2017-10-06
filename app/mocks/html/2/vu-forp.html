@@ -233,7 +233,7 @@
 		</header>
 
 		<main>
-			<payments></payments>
+			<router-view></router-view>
 		</main>
 	</div>
 
@@ -364,9 +364,7 @@
 		</div>
 	</aside>
 	<script>
-		const appConfig = {
-		  message: 'Loading...'
-		}
+
 
 		Vue.component('payments', {
 			template: `	<section class="search-results">
@@ -511,38 +509,37 @@
 				}				
 			}
 		});
-			
-		new Vue({
-			el: '#app',
-		  
+		
+		const appConfig = {
+		  message: 'Loading...'
+		}
+		const Payments = { template: '<payments></payments>' }
+		const Phones = { template: '<phones-items></phones-items>' }
+		
+		const routes = [
+		  { path: '/', component: Payments },
+		  { path: '/payments', component: Payments },
+		  { path: '/phones', component: Phones }
+		]
+		 
+		const router = new VueRouter({
+		  routes
+		})
+
+		const app = new Vue({
+			router,
 			data: { 
-				items: [],
-				loading: false,
-				message: 'VueJS',
-				test: {text: 'VueJS'},
-				groceryList: [
-					{ id: 0, text: 'Овощи' },
-					{ id: 1, text: 'Сыр' },
-					{ id: 2, text: 'Что там ещё люди едят?' }
-				]
-			},
-		  
-			created() {
-				//this.fetchData();
+				appConfig,
+				message: 'VueJS'
 			},
 			methods: {
-				fetchData() {
-					this.$http.get('https://ui-base.herokuapp.com/api/items/get')
-						.then(result => { 
-							console.log(result);
-							this.items = result.data;
-							this.loading = false;
-						})
+				changeRoute() {
+					$('#navbar').collapse('hide');
 				}
 			}
-		  
-		});
+		}).$mount('#app')	
 	</script>
+	
 	<script>
 		document.getElementById('showNotifications').addEventListener('click', showHideNotifications);
 		document.getElementById('closeNotifications').addEventListener('click', showHideNotifications);
