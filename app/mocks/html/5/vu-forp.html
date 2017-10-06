@@ -259,7 +259,7 @@
 			<header class="header d-flex justify-content-center align-items-center">
 
 				<form action="/" class="search-form" id="search">
-					<input type="text" class="form-control" placeholder="Пошук платежу" v-model="searchQuery" v-on:keyup="changeView">
+					<input type="text" class="form-control" placeholder="Пошук платежу" v-model="searchQuery" v-on:click="searchClear" v-on:keyup="changeView">
 					<svg class="search-form-svg"><use xlink:href="#maginifierTool"></use></svg>
 					<span class="hot-key-hint hot-key-hint--left">/</span>
 				</form>
@@ -439,7 +439,7 @@
 		}
 		
 		var appConfig = new Vue();	
-		appConfig.searchQuery =  'searchQuery';
+		appConfig.message =  'Loading';
  
 		
 		const Payments = { template: '<payments></payments>' }
@@ -447,7 +447,7 @@
 		const Test = { template: '<div>Test</div>' }
 		
 		const routes = [
-		  { path: '/', component: Payments },
+		  { path: '/', component: Test },
 		  { path: '/payments', component: Payments },
 		  { path: '/phones', component: Phones },
 		  { path: '/test', component: Test }
@@ -470,7 +470,10 @@
 				changeView() {
 					bus.$emit('searchQuery', this.searchQuery);
 				},
-				
+				searchClear() {
+					this.searchQuery = '';
+					bus.$emit('searchQuery', this.searchQuery);
+				},
 				changeRoute(route) {
 					event.preventDefault()
 					this.$router.push({ path: route});

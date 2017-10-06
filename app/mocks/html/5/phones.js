@@ -45,11 +45,25 @@
 						</div>`,
 			data: function () {
 			  return {
-				items: []
+				items: [],
+				filteredItems: [],
+				searchQuery: ''
 			  }
 			},
 			created() {
 				this.fetchData();
+				bus.$on('searchQuery', searchQuery => {
+
+					
+					this.searchQuery = searchQuery;
+					var arr = [].concat(this.filteredItems);
+					var items = arr.filter((el) => el.name.toLowerCase().indexOf(searchQuery.toLowerCase()) != -1);
+					this.items = items;
+					
+					if (searchQuery == '') {
+						this.items = this.filteredItems;
+					}
+				})				
 			},
 			methods: {
 				fetchData() {
@@ -57,9 +71,9 @@
 					this.$http.get('https://ui-base.herokuapp.com/api/items/get')
 						.then(result => { 
 							//console.log(result);
-							this.items = result.data.sort(this.sort).slice(0,150);
+							this.items = result.data.sort(this.sort).slice(0, 150);
+							this.filteredItems = result.data.sort(this.sort).slice(0, 150);
 							this.loading = false;
-							appConfig.message = 'Users';
 						})
 				},
 				showItem(item){

@@ -8,7 +8,9 @@ class Root extends Component {
 	
     render() {
 		return (
-			<div>
+			<div> 
+				<Header />
+ 
 				{this.props.children}
 			</div>
 		)
