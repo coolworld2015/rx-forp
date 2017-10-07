@@ -12,7 +12,15 @@
 								</main>
 							</div>
  
-						</div>`
+						</div>`,
+			data: function () {
+			  return {
+				route: 'Phones',		
+			  }
+			},
+			created() {
+				appConfig.route = this.route;			
+			},
 		});
 		
 		Vue.component('phones-header', {
@@ -65,11 +73,12 @@
 			template: ` <div v-if="loading">
 						  <div class="fa fa-circle-o-notch fa-spin" 
 							style="position: relative; 
-							top: 200px; 
-							-webkit-box-align:center;
-							-webkit-box-pack:center;
-							display:-webkit-box;
-							font-size:54px"></div>
+								top: 200px; 
+								-webkit-box-align:center;
+								-webkit-box-pack:center;
+								display:-webkit-box;
+								font-size:54px">
+							</div>
 						</div>	
 						
 						<div class="search-results-content" v-else>
@@ -92,8 +101,7 @@
 			  return {
 				items: [],
 				filteredItems: [],
-				searchQuery: '',
-				loading: true
+				loading: true,		
 			  }
 			},
 			created() {

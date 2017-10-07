@@ -87,13 +87,16 @@
 			data: function () {
 			  return {
 				searchQuery: '',
+				route: appConfig.route,
 				isActive: false
 			  }
 			},
+			created() {
+				console.log('appConfig ' + appConfig.route)
+			},	
 			methods: {
 				changeView() {
-					//this.isActive = true
-					//this.isActive = (this.isActive == true) ? 'block' : 'none'
+					console.log(this.route)
 					
 					if (this.isActive !== false) {
 						this.isActive = false;
