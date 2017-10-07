@@ -758,6 +758,10 @@ main {
 	border-right: 5px solid #B40033;
 }
 
+.fp-nav-item  + .fp-nav-item-right:hover {
+	background-color: #A1002E;
+}
+
 /*Hot keys*/
 
 .dark-screen {
