@@ -7,18 +7,67 @@
 		});
 		
 		Vue.component('phones-header', {
-			template: `	<header class="search-results-header">
-							<div class="search-results-item search-results-choose"></div>
-							<div class="search-results-item search-results-sender" style="left: 25px;">ФИО</div>
-							<div class="search-results-item search-results-product">Телефон</div>
-							<div class="search-results-item search-results-sender" style="left: 25px;">Улица</div>
-							<div class="search-results-item search-results-transfer" style="left: -15px;">Дом</div>
-							<div class="search-results-item search-results-amount" style="left: -25px;">Квартира</div>
- 
-							<div class="search-results-item search-results-result">Индекс</div>
- 
-						</header>`
+			template: `	<header class="header d-flex justify-content-center align-items-center">
 
+							<form action="/" class="search-form" id="search" style="display: block; position: absolute; top: -55px;">
+								
+								<input type="text" class="form-control" placeholder="Поиск абонента" 
+								v-model="searchQuery" v-on:click="searchClear" v-on:keyup="changeView">
+								
+								<svg class="search-form-svg"><use xlink:href="#maginifierTool"></use></svg>
+								<span class="hot-key-hint hot-key-hint--left">/</span>
+							</form>
+
+							<div class="notifiers" style="display: none;">
+								<button class="system-button" id="add-messages">
+									<span class="dotted-circle d-flex justify-content-center align-items-center">
+										<svg class="plus-svg"><use xlink:href="#plus"></use></svg>
+									</span>
+									<span class="hot-key-hint hot-key-hint--bottom">д</span>
+								</button>
+								<button class="system-button ring" id="showNotifications">
+									<span class="ring-circle d-flex justify-content-center align-items-center">
+										<svg class="ring-svg"><use xlink:href="#ring"></use></svg>
+									</span>
+									<span class="hot-key-hint hot-key-hint--bottom">с</span>
+								</button>
+								<button class="system-button profile">
+									<img src="img/profile.jpg" alt="profile" class="profile-photo">
+									<span class="hot-key-hint hot-key-hint--bottom">я</span>
+								</button>
+							</div>
+			 
+				
+							<div class="search-results-header">
+								<div class="search-results-item search-results-choose"></div>
+								<div class="search-results-item search-results-sender" style="left: 25px;">ФИО</div>
+								<div class="search-results-item search-results-product">Телефон</div>
+								<div class="search-results-item search-results-sender" style="left: 25px;">Улица</div>
+								<div class="search-results-item search-results-transfer" style="left: -15px;">Дом</div>
+								<div class="search-results-item search-results-amount" style="left: -25px;">Квартира</div>
+	 
+								<div class="search-results-item search-results-result">Индекс</div>
+							</div>
+						</header>`,
+			data: function () {
+			  return {
+				searchQuery: ''
+			  }
+			},
+			methods: {
+				changeView() {
+					bus.$emit('searchQuery', this.searchQuery);
+				},
+				searchClear() {
+					this.searchQuery = '';
+					bus.$emit('searchQuery', this.searchQuery);
+				},
+				changeRoute(route) {
+					event.preventDefault()
+					this.$router.push({ path: route});
+					return false;
+				}
+			}			
 		});
 		
 		Vue.component('phones-items', {
@@ -48,8 +97,6 @@
 			created() {
 				this.fetchData();
 				bus.$on('searchQuery', searchQuery => {
-
-					
 					this.searchQuery = searchQuery;
 					var arr = [].concat(this.filteredItems);
 					var items = arr.filter((el) => el.name.toLowerCase().indexOf(searchQuery.toLowerCase()) != -1);

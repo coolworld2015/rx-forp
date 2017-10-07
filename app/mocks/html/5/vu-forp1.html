@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>VUE-Forpost</title>
+	<title>VU-Forp</title>
 	
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -256,7 +256,33 @@
 		</aside>
 		
 		<div class="content">
- 
+			<header class="header d-flex justify-content-center align-items-center">
+
+				<form action="/" class="search-form" id="search">
+					<input type="text" class="form-control" placeholder="Пошук платежу" v-model="searchQuery" v-on:click="searchClear" v-on:keyup="changeView">
+					<svg class="search-form-svg"><use xlink:href="#maginifierTool"></use></svg>
+					<span class="hot-key-hint hot-key-hint--left">/</span>
+				</form>
+
+				<div class="notifiers">
+					<button class="system-button" id="add-messages">
+						<span class="dotted-circle d-flex justify-content-center align-items-center">
+							<svg class="plus-svg"><use xlink:href="#plus"></use></svg>
+						</span>
+						<span class="hot-key-hint hot-key-hint--bottom">д</span>
+					</button>
+					<button class="system-button ring" id="showNotifications">
+						<span class="ring-circle d-flex justify-content-center align-items-center">
+							<svg class="ring-svg"><use xlink:href="#ring"></use></svg>
+						</span>
+						<span class="hot-key-hint hot-key-hint--bottom">с</span>
+					</button>
+					<button class="system-button profile">
+						<img src="img/profile.jpg" alt="profile" class="profile-photo">
+						<span class="hot-key-hint hot-key-hint--bottom">я</span>
+					</button>
+				</div>
+			</header>
 
 			<main>
 				<router-view></router-view>
