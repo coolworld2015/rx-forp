@@ -71,7 +71,17 @@
 		});
 		
 		Vue.component('phones-items', {
-			template: `	<div class="search-results-content">
+			template: ` <div v-if="loading">
+						  <div class="fa fa-circle-o-notch fa-spin" 
+							style="position: relative; 
+							top: 200px; 
+							-webkit-box-align:center;
+							-webkit-box-pack:center;
+							display:-webkit-box;
+							font-size:54px"></div>
+						</div>	
+						
+						<div class="search-results-content" v-else>
 							<div class="payment" v-for="item in items">
 								<div class="search-results-item search-results-choose"><span class="circle"></span></div>
 								<div class="search-results-item search-results-sender">{{ item.name }}</div>
@@ -91,7 +101,8 @@
 			  return {
 				items: [],
 				filteredItems: [],
-				searchQuery: ''
+				searchQuery: '',
+				loading: true
 			  }
 			},
 			created() {
