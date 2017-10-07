@@ -6,7 +6,7 @@
 	
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
- 
+ 	<link rel="stylesheet" href="css/font-awesome.min.css">
 
 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="sprite" style="display: none">
 		<symbol viewBox="0 0 486.742 486.742" id="graph">
@@ -155,268 +155,26 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.3/vue-resource.min.js"></script>
 	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<script src="navbar.js"></script>
 	<script src="payments.js"></script>
 	<script src="phones.js"></script>
 </head>
+
 <body class="squeeze">
 	<div class="wrapper" id="app">
-		<div class="dark-screen">
-			<div class="hot-keys">
-				<header class="h4">Гарячі клавіші</header>
-				<div class="hot-keys-content">
-					<span class="br">На екрані ви бачите підказки гарячих клавіш підсвічені для деяких функцій.</span>
-					<span class="br">Як використовувати?</span>
-					<span class="br">Тримайте затисненою клавішу <span class="bordered">ALT</span> і натисніть потрібну гарячу клавішу на клавіатурі.</span>
-				</div>
-			</div>
-		</div>
-		
-		<aside class="navigation-sidebar">
-			<nav class="h-100 fp-navbar" onclick="event.preventDefault();return false">
-				<ul class="h-100 fp-nav-left">
-					<li class="fp-nav-item fp-nav-item-left li-border-bottom">
-						<a class="fp-nav-link" href="#" id="showNav">FP</a>
-						<span class="hot-key-hint">~</span>
-					</li>
-					<li class="fp-nav-item fp-nav-item-left">
-						<a class="fp-nav-link" href="#"></a>
-						<span class="hot-key-hint">1</span>
-					</li>
-					<li class="fp-nav-item fp-nav-item-left active" v-on:click="changeRoute('payments')">
-						<a class="fp-nav-link" href="#">М</a>
-						<span class="hot-key-hint">2</span>
-					</li>
-					<li class="fp-nav-item fp-nav-item-left" v-on:click="changeRoute('phones')">
-						<a class="fp-nav-link" href="#">Е</a>
-					</li>
-					<li class="fp-nav-item fp-nav-item-left" v-on:click="changeRoute('test')">
-						<a class="fp-nav-link" href="#">Б</a>
-						<span class="hot-key-hint">4</span>
-					</li>
-					<li class="fp-nav-item fp-nav-item-left">
-						<a class="fp-nav-link" href="#">Б+</a>
-						<span class="hot-key-hint">5</span>
-					</li>
-					<li class="fp-nav-item fp-nav-item-left hovered">
-						<a class="fp-nav-link" href="#">2</a>
-						<span class="hot-key-hint">6</span>
-					</li>
-					<li class="fp-nav-item fp-nav-item-left li-border-bottom">
-						<a class="fp-nav-link" href="#">І</a>
-						<span class="hot-key-hint">7</span>
-					</li>
-					<li class="fp-nav-item fp-nav-item-left">
-						<img src="">
-					</li>
-					<li class="fp-nav-item fp-nav-item-left">
-						<a class="fp-nav-link" href="#">РО</a>
-						<span class="hot-key-hint">8</span>
-					</li>
-					<li class="fp-nav-item fp-nav-item-left li-border-bottom">
-						<a class="fp-nav-link" href="#">КК</a>
-						<span class="hot-key-hint">9</span>
-					</li>
-				</ul>
-				<ul class="h-100 fp-nav-right">
-					<li class="fp-nav-item fp-nav-item-right fp-nav-close li-border-bottom">
-						<a class="fp-nav-link" href="#" id="hideNav">&#x2715</a>
-					</li>
-					<li class="fp-nav-item fp-nav-item-right">
-						<a class="fp-nav-link menu-block-header" href="#">Платежі</a>
-					</li>
-					<li class="fp-nav-item fp-nav-item-right active" v-on:click="changeRoute('payments')">
-						<a class="fp-nav-link" href="#">Миттєвий</a>
-					</li>
-					<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('phones')">
-						<a class="fp-nav-link" href="#">Експрес</a>
-					</li>
-					<li class="fp-nav-item fp-nav-item-right">
-						<a class="fp-nav-link" href="#">Безготівковий</a>
-					</li>
-					<li class="fp-nav-item fp-nav-item-right">
-						<a class="fp-nav-link" href="#">Безготівковий+</a>
-					</li>
-					<li class="fp-nav-item fp-nav-item-right hovered">
-						<a class="fp-nav-link" href="#">Cash2Card</a>
-					</li>
-					<li class="fp-nav-item fp-nav-item-right li-border-bottom">
-						<a class="fp-nav-link" href="#">Інтернет еквайринг</a>
-					</li>
-					<li class="fp-nav-item fp-nav-item-right">
-						<a class="fp-nav-link menu-block-header" href="#">Реєстр операцій</a>
-					</li>
-					<li class="fp-nav-item fp-nav-item-right">
-						<a class="fp-nav-link" href="#">Реєстр операцій</a>
-					</li>
-					<li class="fp-nav-item fp-nav-item-right li-border-bottom">
-						<a class="fp-nav-link" href="#">Касова книга</a>
-					</li>
-				</ul>
-			</nav>
-		</aside>
 		
 		<div class="content">
- 
-
-			<main>
+		 
 				<router-view></router-view>
-			</main>
+		 
 		</div>
-
-		<aside class="notification-sidebar">
-			<div class="notification-panel d-flex flex-column justify-content-start">
-				<header class="notification-header d-flex justify-content-between align-items-center">
-					<button class="system-button" id="closeNotifications">
-						<svg class="close-svg"><use xlink:href="#close"></use></svg>
-						<span class="hot-key-hint hot-key-hint--bottom">ї</span>
-					</button>
-
-					<div class="notifiers">
-						<button class="system-button" id="add-messages">
-							<span class="dotted-circle d-flex justify-content-center align-items-center">
-								<svg class="plus-svg"><use xlink:href="#plus"></use></svg>
-							</span>
-							<span class="hot-key-hint hot-key-hint--bottom">д</span>
-						</button>
-						<button class="system-button ring">
-							<span class="ring-circle d-flex justify-content-center align-items-center">
-								<svg class="ring-svg"><use xlink:href="#ring"></use></svg>
-							</span>
-							<span class="hot-key-hint hot-key-hint--bottom">с</span>
-						</button>
-						<button class="system-button profile">
-							<img src="img/profile.jpg" alt="profile" class="profile-photo">
-							<span class="hot-key-hint hot-key-hint--bottom">я</span>
-						</button>
-					</div>
-
-					<button class="system-button" id="options">
-						<svg class="gears-svg"><use xlink:href="#gears"></use></svg>
-						<span class="hot-key-hint hot-key-hint--bottom">н</span>
-					</button>
-				</header>
-				
-				<div class="notifications">
-					<section class="notifications-content">
-						<header>
-							Важливі!
-							<button class="close-all">
-								<svg class="close-all-svg"><use xlink:href="#close_all"></use></svg>
-							</button>
-						</header>
-						
-						<div class="message message-important">
-							<header class="message-header">
-								<svg class="message-svg"><use xlink:href="#message"></use></svg>
-								<span class="message-header-text bold">РРО недоступний</span>
-								<time>15:14</time>
-							</header>
-							<div class="message-content">
-								Пристрій РРО від'єднано від Касового Місця. Подальша робота касира неможлива!
-							</div>
-							<span class="hot-key-hint">\</span>
-						</div>
-					</section>
-
-					<section class="notifications-content">
-						<header>Сьогодні</header>
-						
-						<div class="message">
-							<header class="message-header">
-								<svg class="message-svg message-svg--question"><use xlink:href="#question"></use></svg>
-								<span class="message-header-text bold">Служба підтримки</span>
-								<time>16:24</time>
-							</header>
-							<div class="message-content">
-								Ваш запит 23452345 було розглянуто.
-							</div>
-						</div>
-						<div class="message">
-							<header class="message-header">
-								<svg class="message-svg message-svg--incomeCall"><use xlink:href="#arrow"></use></svg>
-								<span class="message-header-text bold">Вхідний дзвінок</span>
-								<time>19:48</time>
-							</header>
-						</div>
-						<div class="message">
-							<header class="message-header">
-								<svg class="message-svg message-svg--private"><use xlink:href="#message"></use></svg>
-								<span class="message-header-text bold">Привіт!</span>
-								<time>14:14</time>
-							</header>
-							<div class="message-content">
-								Підкажи, будь-ласка, як переглянути Касову Книгу.
-							</div>
-						</div>
-					</section>
-
-					<section class="notifications-content">
-						<header>Вчора</header>
-						
-						<div class="message">
-							<header class="message-header">
-								<svg class="message-svg message-svg--creditCard"><use xlink:href="#credit_card"></use></svg>
-								<span class="message-header-text bold">Платіж</span>
-								<time>19:01</time>
-							</header>
-							<div class="message-content">
-								Платіж 546465455 успішно виплачено отримувачу.
-							</div>
-						</div>
-						<div class="message">
-							<header class="message-header">
-								<svg class="message-svg message-svg--documents"><use xlink:href="#documents"></use></svg>
-								<span class="message-header-text bold">Документи</span>
-								<time>09:38</time>
-							</header>
-							<div class="message-content">
-								Документи по платежу 331324343 були успішно збережені в системі. При подальшому зверненні клієнта необхідно перевірити актуальніть документів.
-							</div>
-						</div>
-						<div class="message">
-							<header class="message-header">
-								<svg class="message-svg message-svg--user"><use xlink:href="#user"></use></svg>
-								<span class="message-header-text bold">Новий співробітник!</span>
-								<time>17:53</time>
-							</header>
-							<div class="message-content">
-								На вашому відділенні нових співробітник Василь Васильченко.
-							</div>
-						</div>
-						<div class="message">
-							<header class="message-header">
-								<svg class="message-svg message-svg--graph"><use xlink:href="#graph"></use></svg>
-								<span class="message-header-text bold">Тижневий звіт</span>
-								<time>21:00</time>
-							</header>
-							<div class="message-content">
-								Ваш тижневий звіт підготовлено. Будь ласка, ознайомтесь.
-							</div>
-						</div>
-					</section>
-				</div>
-
-				<button class="btn btn-danger servise-desk" id="serviceDesk">
-					Звернутися в техпідтримку
-					<span class="hot-key-hint">п</span>
-				</button>			
-			</div>
-		</aside>
 	</div>
-	
 
-	
 	<script>
-		const appConfig1 = {
-			  message: 'Loading...',
-			  searchQuery: 'searchQuery'
-		}
-		
-		var appConfig = new Vue();	
+		const appConfig = new Vue();	
 		appConfig.message =  'Loading';
  
-		
 		const Payments = { template: '<payments></payments>' }
 		const Phones = { template: '<phones></phones>' }
 		const Test = { template: '<div>Test</div>' }

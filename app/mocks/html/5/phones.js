@@ -1,9 +1,17 @@
 
 		Vue.component('phones', {
-			template: `	<section class="search-results">
-							<phones-header></phones-header>
-							<phones-items></phones-items>
-						</section>`
+			template: `	
+					<div class="wrapper">
+						<navbar></navbar>
+						<main>
+						<div class="content">
+							<section class="search-results">
+								<phones-header></phones-header>
+								<phones-items></phones-items>
+							</section>
+						</div>
+						</main>
+					</div>`
 		});
 		
 		Vue.component('phones-header', {
