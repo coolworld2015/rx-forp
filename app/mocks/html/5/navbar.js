@@ -1,9 +1,9 @@
 		Vue.component('navbar', {
-			template: ` <aside class="navigation-sidebar">
+			template: ` <aside class="navigation-sidebar" v-bind:class="{ shown: isActive }">
 							<nav class="h-100 fp-navbar" onclick="event.preventDefault();return false">
 							
 								<ul class="h-100 fp-nav-right">
-									<li class="fp-nav-item fp-nav-item-right fp-nav-close li-border-bottom">
+									<li class="fp-nav-item fp-nav-item-right fp-nav-close li-border-bottom" v-on:click="changeView()">
 										<a class="fp-nav-link" href="#" id="hideNav">&#x2715</a>
 									</li>
 									<li class="fp-nav-item fp-nav-item-right">
@@ -38,7 +38,7 @@
 									</li>
 								</ul>
 								<ul class="h-100 fp-nav-left">
-									<li class="fp-nav-item fp-nav-item-left li-border-bottom">
+									<li class="fp-nav-item fp-nav-item-left li-border-bottom" v-on:click="changeView()">
 										<a class="fp-nav-link" href="#" id="showNav">FP</a>
 										<span class="hot-key-hint">~</span>
 									</li>
@@ -76,7 +76,7 @@
 										<a class="fp-nav-link" href="#">РО</a>
 										<span class="hot-key-hint">8</span>
 									</li>
-									<li class="fp-nav-item fp-nav-item-left li-border-bottom">
+									<li class="fp-nav-item fp-nav-item-left li-border-bottom" v-on:click="changeView()">
 										<a class="fp-nav-link" href="#">КК</a>
 										<span class="hot-key-hint">9</span>
 									</li>
@@ -86,12 +86,22 @@
 		
 			data: function () {
 			  return {
-				searchQuery: ''
+				searchQuery: '',
+				isActive: false
 			  }
 			},
- 					methods: {
+			methods: {
 				changeView() {
-					bus.$emit('searchQuery', this.searchQuery);
+					//this.isActive = true
+					//this.isActive = (this.isActive == true) ? 'block' : 'none'
+					
+					if (this.isActive !== false) {
+						this.isActive = false;
+					}
+					else {
+						this.isActive = true;
+					}
+
 				},
 				searchClear() {
 					this.searchQuery = '';

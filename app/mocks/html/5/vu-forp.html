@@ -5,6 +5,7 @@
 	<title>VUE-Forpost</title>
 	
 	<link rel="stylesheet" href="css/bootstrap.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/style.css">
  	<link rel="stylesheet" href="css/font-awesome.min.css">
 
@@ -174,7 +175,20 @@
  
 		const Payments = { template: '<payments></payments>' }
 		const Phones = { template: '<phones></phones>' }
-		const Test = { template: '<div>Test</div>' }
+		const Test = { 
+			template: `	<div class="wrapper">
+ 
+							<navbar></navbar>
+							<div class="content">
+								<main>
+									<section class="search-results">
+										Test
+									</section>
+								</main>
+							</div>
+ 
+						</div>` 
+		}
 		
 		const routes = [
 		  { path: '/', component: Test },
@@ -212,59 +226,6 @@
 			}
 		}).$mount('#app')	
 	</script>
-	
- 	<script>
-		//document.getElementById('showNotifications').addEventListener('click', showHideNotifications);
-		//document.getElementById('closeNotifications').addEventListener('click', showHideNotifications);
-
-		document.getElementById('showNav').addEventListener('click', showHideNavigation);
-		document.getElementById('hideNav').addEventListener('click', showHideNavigation);
-
-		/*
-		document.querySelector('.search-results-content').addEventListener('click', (e) => {
-			if (!e.target.parentElement.classList.contains('payment')) return;
-			e.target.parentElement.classList.toggle('selected');
-			showStatePanel();
-		});
-		*/
-
-		document.addEventListener('keydown', (e) => {
-		 	if (e.keyCode == 18) {
-		 		document.body.classList.add('modal-screen');
-		 		document.querySelector('.dark-screen').classList.add('visible');
-		 	}
-		});
-
-		document.addEventListener('keyup', (e) => {
-		 	if (e.keyCode == 18) {
-		 		document.body.classList.remove('modal-screen');
-		 		document.querySelector('.dark-screen').classList.remove('visible');
-		 	}
-		});
-
-		function showHideNotifications(e) {			
-			document.querySelector('.notification-sidebar').classList.toggle('shown');
-		}
-//showHideNavigation(e);
-		function showHideNavigation(e) {
-			// check applied layout (sidebar positioning)
-			if (document.querySelector('.squeeze')) {
-				document.querySelector('.content').classList.toggle('shrunk');
-			}
-
-			document.querySelector('.navigation-sidebar').classList.toggle('shown');
-		}
-
-		function showStatePanel () {
-			const active_payments = document.querySelectorAll('.selected').length;
-
-			if (active_payments) {
-				document.getElementById('activatedPaymentsBox').innerHTML = active_payments;
-				document.getElementById('activatedPayments').classList.add('shown');
-			} else {
-				document.getElementById('activatedPayments').classList.remove('shown');
-			}
-		}
-	</script>
+ 
 </body>
 </html>
