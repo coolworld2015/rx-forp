@@ -475,6 +475,10 @@ main {
 	background: #fff;
 }
 
+.payment:hover {
+	border: 2px solid #8bc34a;
+}
+
 .payment.selected {
 	border: 2px solid #8bc34a;
 }
