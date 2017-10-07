@@ -3,14 +3,14 @@
 			template: `	
 					<div class="wrapper">
 						<navbar></navbar>
+							<div class="content">
 						<main>
-						<div class="content">
-							<section class="search-results">
-								<phones-header></phones-header>
-								<phones-items></phones-items>
-							</section>
-						</div>
+								<section class="search-results">
+									<phones-header></phones-header>
+									<phones-items></phones-items>
+								</section>
 						</main>
+							</div>
 					</div>`
 		});
 		
@@ -25,25 +25,7 @@
 								<svg class="search-form-svg"><use xlink:href="#maginifierTool"></use></svg>
 								<span class="hot-key-hint hot-key-hint--left">/</span>
 							</form>
-
-							<div class="notifiers" style="display: none;">
-								<button class="system-button" id="add-messages">
-									<span class="dotted-circle d-flex justify-content-center align-items-center">
-										<svg class="plus-svg"><use xlink:href="#plus"></use></svg>
-									</span>
-									<span class="hot-key-hint hot-key-hint--bottom">д</span>
-								</button>
-								<button class="system-button ring" id="showNotifications">
-									<span class="ring-circle d-flex justify-content-center align-items-center">
-										<svg class="ring-svg"><use xlink:href="#ring"></use></svg>
-									</span>
-									<span class="hot-key-hint hot-key-hint--bottom">с</span>
-								</button>
-								<button class="system-button profile">
-									<img src="img/profile.jpg" alt="profile" class="profile-photo">
-									<span class="hot-key-hint hot-key-hint--bottom">я</span>
-								</button>
-							</div>
+ 
 			 
 				
 							<div class="search-results-header">
