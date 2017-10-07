@@ -1,17 +1,18 @@
 
 		Vue.component('phones', {
-			template: `	
-					<div class="wrapper">
-						<navbar></navbar>
+			template: `	<div class="wrapper">
+ 
+							<navbar></navbar>
 							<div class="content">
-						<main>
-								<section class="search-results">
-									<phones-header></phones-header>
-									<phones-items></phones-items>
-								</section>
-						</main>
+								<main>
+									<section class="search-results">
+										<phones-header></phones-header>
+										<phones-items></phones-items>
+									</section>
+								</main>
 							</div>
-					</div>`
+ 
+						</div>`
 		});
 		
 		Vue.component('phones-header', {

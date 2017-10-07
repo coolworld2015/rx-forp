@@ -163,11 +163,8 @@
 
 <body class="squeeze">
 	<div class="wrapper" id="app">
-		
 		<div class="content">
-		 
-				<router-view></router-view>
-		 
+			<router-view></router-view> 
 		</div>
 	</div>
 
@@ -217,17 +214,19 @@
 	</script>
 	
  	<script>
-		document.getElementById('showNotifications').addEventListener('click', showHideNotifications);
-		document.getElementById('closeNotifications').addEventListener('click', showHideNotifications);
+		//document.getElementById('showNotifications').addEventListener('click', showHideNotifications);
+		//document.getElementById('closeNotifications').addEventListener('click', showHideNotifications);
 
 		document.getElementById('showNav').addEventListener('click', showHideNavigation);
 		document.getElementById('hideNav').addEventListener('click', showHideNavigation);
 
+		/*
 		document.querySelector('.search-results-content').addEventListener('click', (e) => {
 			if (!e.target.parentElement.classList.contains('payment')) return;
 			e.target.parentElement.classList.toggle('selected');
 			showStatePanel();
 		});
+		*/
 
 		document.addEventListener('keydown', (e) => {
 		 	if (e.keyCode == 18) {
@@ -246,7 +245,7 @@
 		function showHideNotifications(e) {			
 			document.querySelector('.notification-sidebar').classList.toggle('shown');
 		}
-
+//showHideNavigation(e);
 		function showHideNavigation(e) {
 			// check applied layout (sidebar positioning)
 			if (document.querySelector('.squeeze')) {
