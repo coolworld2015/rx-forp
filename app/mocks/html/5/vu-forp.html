@@ -175,14 +175,14 @@
 		const Payments = { template: '<payments></payments>' }
 		const Phones = { template: '<phones></phones>' }
 		const Test = { 
-			template: '<div class="wrapper"><navbar></navbar><div class="content"><main><section class="search-results">{{message}}</section></main></div></div>',
+			template: '<div class="wrapper"><navbar></navbar><div class="content"><main><section class="search-results">{{route}}</section></main></div></div>',
 			data: function () {
 			  return {
-				message: appConfig.route
+				route: 'Test'
 			  }
 			},
 			created() {
-				appConfig.route = 'Test';
+				appConfig.route = this.route;
 			},	
 		};
 		
