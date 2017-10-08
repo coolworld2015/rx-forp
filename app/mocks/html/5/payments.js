@@ -114,7 +114,7 @@
 						</div>
 						
 						<div class="search-results-content" v-else>
-							<div class="payment" v-for="item in items">
+							<div class="payment" v-for="item in items" v-bind:class="{ selected: clicked }" v-on:click="onItem(item)">
 								<div class="search-results-item search-results-choose"><span class="circle"></span></div>
 								<div class="search-results-item search-results-sender">{{ item.id }}</div>
 								<div class="search-results-item search-results-product">{{ item.id }}</div>
@@ -132,16 +132,13 @@
 								</div>
 								<div class="search-results-item search-results-other">...</div>
 							</div>
-						</div>
-						
-						
-				
 						</div>`,
 			data: function () {
 			  return {
 				items: [],
 				filteredItems: [],
-				loading: true
+				loading: true,
+				clicked: false
 			  }
 			},
 			created() {
@@ -167,6 +164,15 @@
 							this.filteredItems = result.data;
 							this.loading = false;
 						})
+				},
+				onItem(item) {
+					if (this.clicked) {
+						this.clicked = false;
+					} else {
+						this.clicked = true;
+					}
+					console.log(item.id);
+					//this.clicked = true;
 				},
 				onChangeText(e) {
 					var text = appConfig.searchQuery;
