@@ -176,7 +176,8 @@
 		const Phones = { template: '<phones></phones>' }
 		const Test = { 
 			template: '<div class="wrapper"><navbar></navbar><div class="content"><main><section class="search-results">' +
-						'<div style="position: relative; top: 200px; -webkit-box-align:center; -webkit-box-pack:center; display:-webkit-box; font-size:54px">Безготівковий</section></main></div></div>',
+						'<div style="position: relative; top: 200px; -webkit-box-align:center; -webkit-box-pack:center; display:-webkit-box; font-size:54px">' + 
+						'Безготівковий</section></main></div></div>',
 			data: function () {
 			  return {
 				route: 'Test'
@@ -189,10 +190,25 @@
 		
 		const Test1 = { 
 			template: '<div class="wrapper"><navbar></navbar><div class="content"><main><section class="search-results">' +
-						'<div style="position: relative; top: 200px; -webkit-box-align:center; -webkit-box-pack:center; display:-webkit-box; font-size:54px">Безготівковий+</section></main></div></div>',
+						'<div style="position: relative; top: 200px; -webkit-box-align:center; -webkit-box-pack:center; display:-webkit-box; font-size:54px">' + 
+						'Безготівковий+</section></main></div></div>',
 			data: function () {
 			  return {
 				route: 'Test1'
+			  }
+			},
+			created() {
+				appConfig.route = this.route;
+			},	
+		};		
+		
+		const Test2 = { 
+			template: '<div class="wrapper"><navbar></navbar><div class="content"><main><section class="search-results">' +
+						'<div style="position: relative; top: 200px; -webkit-box-align:center; -webkit-box-pack:center; display:-webkit-box; font-size:54px">' + 
+						'Cash2Card</section></main></div></div>',
+			data: function () {
+			  return {
+				route: 'Test2'
 			  }
 			},
 			created() {
@@ -207,7 +223,11 @@
 		  { path: '/payments', component: Payments },
 		  { path: '/phones', component: Phones },
 		  { path: '/test', component: Test },
-		  { path: '/test1', component: Test1 }
+		  { path: '/test1', component: Test1 },
+		  { path: '/test2', component: Test2 },
+		  { path: '/test3', component: Test2 },
+		  { path: '/test4', component: Test2 },
+		  { path: '/test5', component: Test2 }
 		]
 		 
 		const router = new VueRouter({
