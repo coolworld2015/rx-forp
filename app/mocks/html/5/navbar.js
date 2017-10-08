@@ -109,6 +109,12 @@
 			},	
 			methods: {
 				init() {								
+					if (this.route == 'Payments') {
+						this.payments = true;
+					} else {
+						this.payments = false;
+					}					
+					
 					if (this.route == 'Phones') {
 						this.phones = true;
 					} else {
