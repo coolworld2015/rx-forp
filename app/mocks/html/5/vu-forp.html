@@ -214,6 +214,48 @@
 			created() {
 				appConfig.route = this.route;
 			},	
+		};		
+		
+		const Test3 = { 
+			template: '<div class="wrapper"><navbar></navbar><div class="content"><main><section class="search-results">' +
+						'<div style="position: relative; top: 200px; -webkit-box-align:center; -webkit-box-pack:center; display:-webkit-box; font-size:54px">' + 
+						'Інтернет еквайринг</section></main></div></div>',
+			data: function () {
+			  return {
+				route: 'Test3'
+			  }
+			},
+			created() {
+				appConfig.route = this.route;
+			},	
+		};		
+		
+		const Test4 = { 
+			template: '<div class="wrapper"><navbar></navbar><div class="content"><main><section class="search-results">' +
+						'<div style="position: relative; top: 200px; -webkit-box-align:center; -webkit-box-pack:center; display:-webkit-box; font-size:54px">' + 
+						'Реєстр операцій</section></main></div></div>',
+			data: function () {
+			  return {
+				route: 'Test4'
+			  }
+			},
+			created() {
+				appConfig.route = this.route;
+			},	
+		};		
+		
+		const Test5 = { 
+			template: '<div class="wrapper"><navbar></navbar><div class="content"><main><section class="search-results">' +
+						'<div style="position: relative; top: 200px; -webkit-box-align:center; -webkit-box-pack:center; display:-webkit-box; font-size:54px">' + 
+						'Касова книга</section></main></div></div>',
+			data: function () {
+			  return {
+				route: 'Test5'
+			  }
+			},
+			created() {
+				appConfig.route = this.route;
+			},	
 		};
 		
 		appConfig.route = 'Test';
@@ -225,9 +267,9 @@
 		  { path: '/test', component: Test },
 		  { path: '/test1', component: Test1 },
 		  { path: '/test2', component: Test2 },
-		  { path: '/test3', component: Test2 },
-		  { path: '/test4', component: Test2 },
-		  { path: '/test5', component: Test2 }
+		  { path: '/test3', component: Test3 },
+		  { path: '/test4', component: Test4 },
+		  { path: '/test5', component: Test5 }
 		]
 		 
 		const router = new VueRouter({

@@ -28,16 +28,16 @@
 									<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('test2')" v-bind:class="{ active: test2 }">
 										<a class="fp-nav-link" href="#">Cash2Card</a>
 									</li>
-									<li class="fp-nav-item fp-nav-item-right li-border-bottom" v-on:click="changeRoute('test1')" v-bind:class="{ active: test3 }">
+									<li class="fp-nav-item fp-nav-item-right li-border-bottom" v-on:click="changeRoute('test3')" v-bind:class="{ active: test3 }">
 										<a class="fp-nav-link" href="#">Інтернет еквайринг</a>
 									</li><span></span> 
 									<li class="fp-nav-item fp-nav-item-right">
 										<a class="fp-nav-link menu-block-header" href="#">Реєстр операцій</a>
 									</li>
-									<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('test1')" v-bind:class="{ active: test4 }">
+									<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('test4')" v-bind:class="{ active: test4 }">
 										<a class="fp-nav-link" href="#">Реєстр операцій</a>
 									</li>
-									<li class="fp-nav-item fp-nav-item-right li-border-bottom" v-on:click="changeRoute('test1')" v-bind:class="{ active: test5 }">
+									<li class="fp-nav-item fp-nav-item-right li-border-bottom" v-on:click="changeRoute('test5')" v-bind:class="{ active: test5 }">
 										<a class="fp-nav-link" href="#">Касова книга</a>
 									</li>
 								</ul>
@@ -69,18 +69,18 @@
 										<a class="fp-nav-link" href="#" title="Cash2Card">C2</a>
 										<span class="hot-key-hint">6</span>
 									</li>
-									<li class="fp-nav-item fp-nav-item-left li-border-bottom" v-on:click="changeRoute('test1')" v-bind:class="{ active: test3 }">
+									<li class="fp-nav-item fp-nav-item-left li-border-bottom" v-on:click="changeRoute('test3')" v-bind:class="{ active: test3 }">
 										<a class="fp-nav-link" href="#" title="Інтернет еквайринг">ІE</a>
 										<span class="hot-key-hint">7</span>
 									</li>
 									<li class="fp-nav-item fp-nav-item-left">
 										<img src="">
 									</li>
-									<li class="fp-nav-item fp-nav-item-left" v-on:click="changeRoute('test1')" v-bind:class="{ active: test4 }">
+									<li class="fp-nav-item fp-nav-item-left" v-on:click="changeRoute('test4')" v-bind:class="{ active: test4 }">
 										<a class="fp-nav-link" href="#" title="Реєстр операцій">РО</a>
 										<span class="hot-key-hint">8</span>
 									</li>
-									<li class="fp-nav-item fp-nav-item-left li-border-bottom" v-on:click="changeRoute('test1')" v-bind:class="{ active: test5 }">
+									<li class="fp-nav-item fp-nav-item-left li-border-bottom" v-on:click="changeRoute('test5')" v-bind:class="{ active: test5 }">
 										<a class="fp-nav-link" href="#" title="Касова книга">КК</a>
 										<span class="hot-key-hint">9</span>
 									</li>
