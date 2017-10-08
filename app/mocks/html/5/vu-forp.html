@@ -185,6 +185,19 @@
 			created() {
 				appConfig.route = this.route;
 			},	
+		};		
+		
+		const Test1 = { 
+			template: '<div class="wrapper"><navbar></navbar><div class="content"><main><section class="search-results">' +
+						'<div style="position: relative; top: 200px; -webkit-box-align:center; -webkit-box-pack:center; display:-webkit-box; font-size:54px">Безготівковий+</section></main></div></div>',
+			data: function () {
+			  return {
+				route: 'Test1'
+			  }
+			},
+			created() {
+				appConfig.route = this.route;
+			},	
 		};
 		
 		appConfig.route = 'Test';
@@ -193,7 +206,8 @@
 		  { path: '/', component: Test },
 		  { path: '/payments', component: Payments },
 		  { path: '/phones', component: Phones },
-		  { path: '/test', component: Test }
+		  { path: '/test', component: Test },
+		  { path: '/test1', component: Test1 }
 		]
 		 
 		const router = new VueRouter({

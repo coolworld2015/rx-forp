@@ -22,7 +22,7 @@
 									<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('test')" v-bind:class="{ active: test }">
 										<a class="fp-nav-link" href="#">Безготівковий</a>
 									</li>
-									<li class="fp-nav-item fp-nav-item-right">
+									<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('test1')" v-bind:class="{ active: test1 }">
 										<a class="fp-nav-link" href="#">Безготівковий+</a>
 									</li>
 									<li class="fp-nav-item fp-nav-item-right">
@@ -61,7 +61,7 @@
 										<a class="fp-nav-link" href="#" title="Безготівковий">Б</a>
 										<span class="hot-key-hint">4</span>
 									</li>
-									<li class="fp-nav-item fp-nav-item-left">
+									<li class="fp-nav-item fp-nav-item-left" v-on:click="changeRoute('test1')" v-bind:class="{ active: test1 }">
 										<a class="fp-nav-link" href="#" title="Безготівковий+">Б+</a>
 										<span class="hot-key-hint">5</span>
 									</li>
@@ -93,7 +93,9 @@
 				searchQuery: '',
 				route: appConfig.route,
 				isActive: false,
-				test: null
+				test: null,
+				test1: null,
+				phones: null
 			  }
 			},
 			created() {
@@ -104,9 +106,20 @@
 				init() {					
 					if (this.route == 'Test') {
 						this.test = true;
-					}
-					else {
+					} else {
 						this.test = false;
+					}					
+					
+					if (this.route == 'Test1') {
+						this.test1 = true;
+					} else {
+						this.test1 = false;
+					}					
+					
+					if (this.route == 'Phones') {
+						this.phones = true;
+					} else {
+						this.phones = false;
 					}
 
 				},				
