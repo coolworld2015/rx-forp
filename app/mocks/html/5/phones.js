@@ -69,8 +69,8 @@
 		Vue.component('phones-footer', {
 			template: `	<section class="activated-payments d-flex justify-content-start align-items-center shown" id="activatedPayments">
 							<div class="activated-payments-item">
-								<span class="selected-payments" id="activatedPaymentsBox">0</span>
-								Платежів вибрано
+								<span class="selected-payments" id="activatedPaymentsBox" style="width: 44px;">{{ count }}</span>
+								Платежів
 							</div>
 							<div class="activated-payments-item">
 								<button class="" id="cancelSelection">
@@ -101,12 +101,14 @@
 						</section>`,
 			data: function () {
 			  return {
-				route: 'Payments',		
+				count: 0,		
 			  }
 			},
 			created() {
-				appConfig.route = this.route;			
-			},			
+				bus.$on('itemsCount', itemsCount => {
+					this.count = itemsCount;
+				})			
+			},				
 		});
 		
 		Vue.component('phones-items', {
@@ -165,6 +167,7 @@
 							this.items = result.data.sort(this.sort).slice(0, 150);
 							this.filteredItems = result.data.sort(this.sort).slice(0, 150);
 							this.loading = false;
+							bus.$emit('itemsCount', result.data.length);
 						})
 				},
 				showItem(item){

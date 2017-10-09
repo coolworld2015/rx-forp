@@ -69,8 +69,8 @@
 		Vue.component('audit-footer', {
 			template: `	<section class="activated-payments d-flex justify-content-start align-items-center shown" id="activatedPayments">
 							<div class="activated-payments-item">
-								<span class="selected-payments" id="activatedPaymentsBox">0</span>
-								Платежів вибрано
+								<span class="selected-payments" id="activatedPaymentsBox" style="width: 44px;">{{ count }}</span>
+								Платежів
 							</div>
 							<div class="activated-payments-item">
 								<button class="" id="cancelSelection">
@@ -100,12 +100,14 @@
 							</div> 
 						</section>`,
 			data: function () {
-			  return {
-				route: 'Payments',		
+			  return {	
+				count: 0,		
 			  }
 			},
 			created() {
-				appConfig.route = this.route;			
+				bus.$on('itemsCount', itemsCount => {
+					this.count = itemsCount;
+				})		
 			},			
 		});
 		
@@ -128,11 +130,11 @@
 								<div class="search-results-item search-results-transfer">{{ item.name }}</div>
 								<div class="search-results-item search-results-sender">{{ item.date }}</div>
 								<div class="search-results-item search-results-transfer">{{ item.description }}</div>
-								<div class="search-results-item search-results-amount">{{ item.id }}</div>
+								<div class="search-results-item search-results-amount">{{ (item.ip).split('f:')[1]}}</div>
  
 								<div class="search-results-item search-results-result long-term">
 									<span class="search-results-icon"></span>
-									{{ item.ip }}
+									{{ item.id }}
 								</div> 
  
 							</div>
@@ -161,10 +163,10 @@
 				fetchData() {
 					this.$http.get('https://ui-base.herokuapp.com/api/audit/get')
 						.then(result => { 
-							//console.log(result);
 							this.items = result.data.sort(this.sort).slice(0, 150);
 							this.filteredItems = result.data.sort(this.sort).slice(0, 150);
 							this.loading = false;
+							bus.$emit('itemsCount', result.data.length);
 						})
 				},
 				showItem(item){
