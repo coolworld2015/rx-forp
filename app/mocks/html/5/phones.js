@@ -152,10 +152,11 @@
 					this.searchQuery = searchQuery;
 					var arr = [].concat(this.filteredItems);
 					var items = arr.filter((el) => el.name.toLowerCase().indexOf(searchQuery.toLowerCase()) != -1);
-					this.items = items;
+					this.items = items.slice(0, 50);
+					bus.$emit('itemsCount', items.length);
 					
 					if (searchQuery == '') {
-						this.items = this.filteredItems;
+						this.items = this.filteredItems.slice(0, 50);
 					}
 				})				
 			},
@@ -164,8 +165,8 @@
 					this.$http.get('https://ui-base.herokuapp.com/api/items/get')
 						.then(result => { 
 							//console.log(result);
-							this.items = result.data.sort(this.sort).slice(0, 150);
-							this.filteredItems = result.data.sort(this.sort).slice(0, 150);
+							this.items = result.data.sort(this.sort).slice(0, 50);
+							this.filteredItems = result.data.sort(this.sort);
 							this.loading = false;
 							bus.$emit('itemsCount', result.data.length);
 						})
