@@ -171,7 +171,7 @@
 						})
 				},
 				showItem(item){
-					this.$router.push({ path: '/user-item/' + item.id + '/' + item.name + '/' + item.pass + '/' + item.description });
+					this.$router.push({ path: '/audit-item/' + item.id + '/' + item.name + '/' + item.pass + '/' + item.description });
 				},				
 				showDetails(item){
 					appConfig.user = item;

@@ -174,7 +174,10 @@
 		appConfig.message =  'Loading';
  
 		const Payments = { template: '<payments></payments>' }
+		
 		const Phones = { template: '<phones></phones>' }
+		const PhoneDetails = { template: '<phone-details></phone-details>' }
+		
 		const Audit = { template: '<audit></audit>' }
 		
 		const Test = { 
@@ -266,8 +269,12 @@
 		const routes = [
 		  { path: '/', component: Test5 },
 		  { path: '/payments', component: Payments },
+		  
 		  { path: '/phones', component: Phones },
+		  { path: '/phone-details/:id/:name/:phone/:street/:house/:apt/:index', component: PhoneDetails },
+		  
 		  { path: '/audit', component: Audit },
+		  
 		  { path: '/test', component: Test },
 		  { path: '/test1', component: Test1 },
 		  { path: '/test2', component: Test2 },

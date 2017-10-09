@@ -111,6 +111,52 @@
 			},				
 		});
 		
+		Vue.component('phone-details', {
+			template: '<div style="text-align: center; margin-top: 100px;">' + 
+							'{{ name }}<br><br>' + 
+							'<input v-model="id" readonly><br>' +
+							'<input v-model="name"><br>' +
+							'<input v-model="phone"><br>' +
+							'<input v-model="street"><br>' +
+							'<input v-model="house"><br>' +
+							'<input v-model="apt"><br>' +
+							'<input v-model="index"><br><br>' +
+						'<button v-on:click="goBack" style="display: initial;">Back</button>' +
+						'</div>',
+			data: function () {
+					return {
+						message: '',
+						id: this.$route.params.id,
+						name: this.$route.params.name,
+						phone: this.$route.params.phone,
+						street: this.$route.params.street,
+						house: this.$route.params.house,
+						apt: this.$route.params.apt,
+						index: this.$route.params.index
+					}
+			},
+			created() {
+				appConfig.message = this.name;
+			},
+			methods: {
+				goBack() {
+					this.$router.push('/phones');
+				},
+				updateItem() {
+					appConfig.message = 'Loading...'
+					this.$http.post('https://ui-base.herokuapp.com/api/users/update', {                
+							id: this.id,
+							name: this.name,
+							pass: this.pass,
+							description: this.description})
+						.then(result => { 
+							//console.log(result);
+							this.$router.push('/users');
+						})
+				},
+			}
+		})	
+		
 		Vue.component('phones-items', {
 			template: ` <div v-if="loading">
 						  <div class="fa fa-circle-o-notch fa-spin" 
@@ -124,7 +170,7 @@
 						</div>	
 						
 						<div class="search-results-content" v-else>
-							<div class="payment" v-for="item in items">
+							<div class="payment" v-for="item in items" v-on:click="showItem(item)">
 								<div class="search-results-item search-results-choose"><span class="circle"></span></div>
 								<div class="search-results-item search-results-sender">{{ item.name }}</div>
 								<div class="search-results-item search-results-transfer">{{ item.phone }}</div>
@@ -172,7 +218,8 @@
 						})
 				},
 				showItem(item){
-					this.$router.push({ path: '/user-item/' + item.id + '/' + item.name + '/' + item.pass + '/' + item.description });
+					this.$router.push({ path: '/phone-details/' + item.id + '/' + item.name + '/' + 
+						item.phone + '/' + item.street + '/' + item.house + '/' + item.apt + '/' + item.index });
 				},				
 				showDetails(item){
 					appConfig.user = item;
