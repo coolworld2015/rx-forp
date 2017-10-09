@@ -10,39 +10,7 @@
 										<payments-items></payments-items>
 									</section>
 									
-									<section class="activated-payments d-flex justify-content-start align-items-center shown" id="activatedPayments">
-										<div class="activated-payments-item">
-											<span class="selected-payments" id="activatedPaymentsBox">0</span>
-											Платежів вибрано
-										</div>
-										<div class="activated-payments-item">
-											<button class="" id="cancelSelection">
-												<svg class="activated-payments-svg"><use xlink:href="#cancel"></use></svg>
-												Відмінити
-											</button>
-										</div>
-										<div class="activated-payments-item">
-											<button id="showTrusted">
-											<svg class="activated-payments-svg"><use xlink:href="#flag"></use></svg>
-											Відмінити довірені
-											<svg class="activated-payments-svg activated-payments-svg--end"><use xlink:href="#triangle"></use></svg>
-											</button>
-										</div>
-										<div class="activated-payments-item">
-											<button id="showTrusted">
-											<svg class="activated-payments-svg"><use xlink:href="#graph"></use></svg>
-											Згенерувати звіт
-											<svg class="activated-payments-svg activated-payments-svg--end"><use xlink:href="#triangle"></use></svg>
-											</button>
-										</div>
-										<div class="search-results-item">
-											<span class="hint">click</span>
-											Виділити
-											<span class="hint">esc</span>
-											Зняти виділення
-										</div> 
-									</section>
-									
+									<payments-footer></payments-footer>
 								</main>
 							</div>
 
@@ -99,6 +67,49 @@
 					return false;
 				}
 			}			
+		});
+		
+		Vue.component('payments-footer', {
+			template: `	<section class="activated-payments d-flex justify-content-start align-items-center shown" id="activatedPayments">
+							<div class="activated-payments-item">
+								<span class="selected-payments" id="activatedPaymentsBox">0</span>
+								Платежів вибрано
+							</div>
+							<div class="activated-payments-item">
+								<button class="" id="cancelSelection">
+									<svg class="activated-payments-svg"><use xlink:href="#cancel"></use></svg>
+									Відмінити
+								</button>
+							</div>
+							<div class="activated-payments-item">
+								<button id="showTrusted">
+								<svg class="activated-payments-svg"><use xlink:href="#flag"></use></svg>
+								Відмінити довірені
+								<svg class="activated-payments-svg activated-payments-svg--end"><use xlink:href="#triangle"></use></svg>
+								</button>
+							</div>
+							<div class="activated-payments-item">
+								<button id="showTrusted">
+								<svg class="activated-payments-svg"><use xlink:href="#graph"></use></svg>
+								Згенерувати звіт
+								<svg class="activated-payments-svg activated-payments-svg--end"><use xlink:href="#triangle"></use></svg>
+								</button>
+							</div>
+							<div class="search-results-item">
+								<span class="hint">click</span>
+								Виділити
+								<span class="hint">esc</span>
+								Зняти виділення
+							</div> 
+						</section>`,
+			data: function () {
+			  return {
+				route: 'Payments',		
+			  }
+			},
+			created() {
+				appConfig.route = this.route;			
+			},			
 		});
 		
 		Vue.component('payments-items', {
