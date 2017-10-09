@@ -19,7 +19,7 @@
 									<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('phones')" v-bind:class="{ active: phones }">
 										<a class="fp-nav-link" href="#">Експрес</a>
 									</li>
-									<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('test')" v-bind:class="{ active: test }">
+									<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('audit')" v-bind:class="{ active: audit }">
 										<a class="fp-nav-link" href="#">Безготівковий</a>
 									</li>
 									<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('test1')" v-bind:class="{ active: test1 }">
@@ -57,7 +57,7 @@
 									<li class="fp-nav-item fp-nav-item-left" v-on:click="changeRoute('phones')" v-bind:class="{ active: phones }">
 										<a class="fp-nav-link" href="#" title="Експрес">Е</a>
 									</li>
-									<li class="fp-nav-item fp-nav-item-left" v-on:click="changeRoute('test')" v-bind:class="{ active: test }">
+									<li class="fp-nav-item fp-nav-item-left" v-on:click="changeRoute('audit')" v-bind:class="{ active: audit }">
 										<a class="fp-nav-link" href="#" title="Безготівковий">Б</a>
 										<span class="hot-key-hint">4</span>
 									</li>
@@ -95,6 +95,7 @@
 				isActive: false,
 				payments: null,
 				phones: null,
+				audit: null,
 				test: null,
 				test1: null,
 				test2: null,
@@ -120,6 +121,12 @@
 					} else {
 						this.phones = false;
 					}
+					
+					if (this.route == 'Audit') {
+						this.audit = true;
+					} else {
+						this.audit = false;
+					}				
 					
 					if (this.route == 'Test') {
 						this.test = true;

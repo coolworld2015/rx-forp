@@ -159,6 +159,7 @@
 	<script src="navbar.js"></script>
 	<script src="payments.js"></script>
 	<script src="phones.js"></script>
+	<script src="audit.js"></script>
 </head>
 
 <body class="squeeze">
@@ -174,6 +175,7 @@
  
 		const Payments = { template: '<payments></payments>' }
 		const Phones = { template: '<phones></phones>' }
+		const Audit = { template: '<audit></audit>' }
 		const Test = { 
 			template: '<div class="wrapper"><navbar></navbar><div class="content"><main><section class="search-results">' +
 						'<div style="position: relative; top: 200px; -webkit-box-align:center; -webkit-box-pack:center; display:-webkit-box; font-size:54px">' + 
@@ -264,6 +266,7 @@
 		  { path: '/', component: Test },
 		  { path: '/payments', component: Payments },
 		  { path: '/phones', component: Phones },
+		  { path: '/audit', component: Audit },
 		  { path: '/test', component: Test },
 		  { path: '/test1', component: Test1 },
 		  { path: '/test2', component: Test2 },
