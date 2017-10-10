@@ -368,8 +368,8 @@
 						<div class="search-results-content" v-else>
 							<div class="payment" v-for="item in items" v-bind:class="{ selected: clicked }" v-on:click="showDetails(item)">
 								<div class="search-results-item search-results-choose"><span class="circle"></span></div>
-								<div class="search-results-item search-results-sender">{{ item.id }}</div>
-								<div class="search-results-item search-results-product">{{ item.id }}</div>
+								<div class="search-results-item search-results-sender">{{ item.name }}</div>
+								<div class="search-results-item search-results-product">{{ item.name }}</div>
 								<div class="search-results-item search-results-transfer">{{ item.id }}</div>
 								<div class="search-results-item search-results-currency">UAH</div>
 								<div class="search-results-item search-results-amount">1111</div>
@@ -398,7 +398,7 @@
 				bus.$on('searchQuery', searchQuery => {
 					this.searchQuery = searchQuery;
 					var arr = [].concat(this.filteredItems);
-					var items = arr.filter((el) => el.id.toLowerCase().indexOf(searchQuery.toLowerCase()) != -1);
+					var items = arr.filter((el) => el.name.toLowerCase().indexOf(searchQuery.toLowerCase()) != -1);
 					this.items = items;
 					bus.$emit('itemsCount', items.length);
 					
@@ -411,8 +411,8 @@
 				fetchData() {
 					this.$http.get('https://ui-base.herokuapp.com/api/users/get')
 						.then(result => {
-							this.items = result.data;
-							this.filteredItems = result.data;
+							this.items = result.data.sort(this.sort);
+							this.filteredItems = result.data.sort(this.sort);
 							this.loading = false;
 							bus.$emit('itemsCount', result.data.length);
 						})
@@ -445,59 +445,4 @@
 					return 0;
 				}				
 			}
-		});
-		/*
-						<div class="search-results-content" v-else>
-							<div class="payment" v-for="item in items">
-								<div class="search-results-item search-results-choose"><span class="circle"></span></div>
-								<div class="search-results-item search-results-sender">{{ item.cashdesk_system_id }}</div>
-								<div class="search-results-item search-results-product">{{ item.sender.cashdesk.city_id }}</div>
-								<div class="search-results-item search-results-transfer">{{ item.cashdesk_registration_id }}</div>
-								<div class="search-results-item search-results-currency">UAH</div>
-								<div class="search-results-item search-results-amount">{{((+item.amount).toFixed(2)).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ")}}</div>
-								<div class="search-results-item search-results-date">01 Жовтня 2017</div>
-								<div class="search-results-item search-results-result long-term">
-									<span class="search-results-icon"></span>
-									30 днів
-								</div>
-								<div class="search-results-item search-results-status active">
-									<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
-									Активний
-								</div>
-								<div class="search-results-item search-results-other">...</div>
-							</div>
-						</div>`,
-		*/
-		/*				
-			template: ` <div v-if="loading">
-						  <div class="fa fa-circle-o-notch fa-spin" 
-							style="position: relative; 
-								top: 200px; 
-								-webkit-box-align:center;
-								-webkit-box-pack:center;
-								display:-webkit-box;
-								font-size:54px">
-							</div>
-						</div>
-						
-						<div class="search-results-content" v-else>
-							<div class="payment" v-for="item in items" v-bind:class="{ selected: clicked }" v-on:click="onItem(item)">
-								<div class="search-results-item search-results-choose"><span class="circle"></span></div>
-								<div class="search-results-item search-results-sender">{{ item.id }}</div>
-								<div class="search-results-item search-results-product">{{ item.id }}</div>
-								<div class="search-results-item search-results-transfer">{{ item.id }}</div>
-								<div class="search-results-item search-results-currency">UAH</div>
-								<div class="search-results-item search-results-amount">1111</div>
-								<div class="search-results-item search-results-date">01 Жовтня 2017</div>
-								<div class="search-results-item search-results-result long-term">
-									<span class="search-results-icon"></span>
-									30 днів
-								</div>
-								<div class="search-results-item search-results-status active">
-									<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
-									Активний
-								</div>
-								<div class="search-results-item search-results-other">...</div>
-							</div>
-						</div>`,				
-		*/					
+		});				
