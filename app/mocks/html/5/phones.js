@@ -110,9 +110,187 @@
 				})			
 			},				
 		});
+				
+		Vue.component('phone-form', {
+			template: `<form action="/" class="payment-form payment-form--create d-flex justify-content-stretch">
+					
+					<fieldset class="sender-data form-section-wrapper">
+						<legend>Відправник</legend>
+						
+						<div class="form-section">
+							<div class="form-group">
+								<label for="senderSurname">Прізвище</label>
+								<input type="text" class="form-control" id="senderSurname" placeholder="Прізвище відправника">
+								<div class="invalid-feedback">
+									Будь ласка, коректно вкажіть прізвище відправника.
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="senderName">Ім'я</label>
+								<input type="text" class="form-control" id="senderName" placeholder="Ім'я відправника">
+								<div class="invalid-feedback">
+									Будь ласка, коректно вкажіть ім'я відправника.
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="senderPatronymic">По-батькові</label>
+								<input type="text" class="form-control" id="senderPatronymic" placeholder="По-батькові відправника">
+								<div class="invalid-feedback">
+									Будь ласка, коректно вкажіть по-батькові відправника.
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="senderPhone">Номер телефону</label>
+								<input type="text" class="form-control" id="senderPhone" placeholder="+380 (XX) XXX-XX-XX">
+								<div class="invalid-feedback">
+									Будь ласка, коректно вкажіть номер телефону відправника.
+								</div>
+							</div>
+							<div class="form-group input-disabled">
+								<label for="senderBirthday">Дата народження</label>
+								<input type="text" class="form-control" id="senderBirthday" placeholder="ДД.ММ.РРРР" disabled>
+								<div class="invalid-feedback">
+									Будь ласка, коректно вкажіть дату народження відправника.
+								</div>
+							</div>
+							<div class="form-group input-disabled">
+								<label for="senderBirthPlace">Місце народження</label>
+								<input type="text" class="form-control" id="senderBirthPlace" placeholder="Місто народження, країна" disabled>
+								<div class="invalid-feedback">
+									Будь ласка, коректно вкажіть місце народження відправника.
+								</div>
+							</div>
+							<div class="form-group input-disabled">
+								<label for="taxId">ІПН</label>
+								<input type="text" class="form-control" id="taxId" placeholder="Ідентифікаційний номер" disabled>
+								<div class="invalid-feedback">
+									Будь ласка, коректно вкажіть індивідуальний податковий номер відправника.
+								</div>
+							</div>
+						</div>
+
+						<div class="form-section">
+							<div class="form-group">
+								<label for="typeId">Тип документу</label>
+								<select class="form-control" id="typeId">
+									<option>Виберіть</option>
+								</select>
+								<div class="invalid-feedback">
+									Будь ласка, виберіть зі списку тип документу.
+								</div>
+							</div>
 		
+							<div class="form-row">
+								<div class="form-group col-md-3">
+									<label for="idSeries">Серія</label>
+									<input type="text" class="form-control" id="idSeries" placeholder="-">
+									<div class="invalid-feedback">
+										Будь ласка, коректно вкажіть серію документу.
+									</div>
+								</div>
+								<div class="form-group col-md-9">
+									<label for="numberId">Номер</label>
+									<input type="text" class="form-control" id="numberId" placeholder="-">
+									<div class="invalid-feedback">
+										Будь ласка, коректно вкажіть номер документу.
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="issueOrganization">Орган видачі</label>
+								<textarea class="form-control" row="3" id="issueOrganization" placeholder="Організація, що видала документ"></textarea>	
+								<div class="invalid-feedback">
+									Будь ласка, коректно вкажіть організацію, що видала документ.
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="issueDate">Дата видачі</label>
+								<input type="text" class="form-control" id="issueDate" placeholder="ДД.ММ.РРРР">
+								<div class="invalid-feedback">
+									Будь ласка, коректно вкажіть дату видачі документу.
+								</div>
+							</div>
+
+						</div>
+					</fieldset>
+					
+					<fieldset class="receiver-data">
+						<legend>Отримувач</legend>
+						<div class="form-section">
+							<div class="form-group">
+								<label for="receiverSurname">Прізвище</label>
+								<input type="text" class="form-control" id="receiverSurname" placeholder="Прізвище отримувача">
+								<div class="invalid-feedback">
+									Будь ласка, коректно вкажіть прізвище отримувача.
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="receiverName">Ім'я</label>
+								<input type="text" class="form-control" id="receiverName" placeholder="Ім'я отримувача">
+								<div class="invalid-feedback">
+									Будь ласка, коректно вкажіть ім'я отримувача.
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="receiverPatronymic">По-батькові</label>
+								<input type="text" class="form-control" id="receiverPatronymic" placeholder="По-батькові отримувача">
+								<div class="invalid-feedback">
+									Будь ласка, коректно вкажіть по-батькові отримувача.
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="receiverPhone">Номер телефону</label>
+								<input type="text" class="form-control" id="receiverPhone" placeholder="+380 (XX) XXX-XX-XX">
+								<div class="invalid-feedback">
+									Будь ласка, коректно вкажіть номер телефону отримувача.
+								</div>
+							</div>
+						</div>
+					</fieldset>
+
+					<fieldset class="amount-data">
+						<legend>Сума</legend>
+						<div class="form-section">
+							<div class="form-group">
+								<label for="amount">Сума переказу, грн</label>
+								<input type="number" class="form-control" id="amount" placeholder="0.00">
+								<div class="invalid-feedback">
+									Сума переказу не може перевищувати 149 999.99 грн.
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="fee">Комісія</label>
+								<input type="text" class="form-control" id="fee" value="2%" disabled>
+							</div>
+							<div class="form-group">
+								<label for="totalAmount">Загальна сума</label>
+								<input type="text" class="form-control" id="totalAmount" disabled>
+							</div>
+							<div class="form-group">
+								<label for="amountReceived">Гроші клієнта</label>
+								<input type="number" class="form-control" id="amountReceived" placeholder="0.00">
+								<div class="invalid-feedback">
+									Сума не може бути меншою за загальну суму переказу!
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="charge">Решта</label>
+								<input type="text" class="form-control" id="charge" disabled>
+							</div>
+						</div>
+					</fieldset>
+					
+					<div class="form-info">
+						<p>Відправити платіж <span class="amount">10 000</span> UAH</p>
+						<button class="btn btn-danger" type="submit">Відправити</button>
+					</div>
+				</form>`
+		});				
+						
 		Vue.component('phone-details', {
-			template: '<div style="text-align: center; margin-top: 100px;">' + 
+			template1: '<div style="text-align: center; margin-top: 100px;">' + 
 							'{{ name }}<br><br>' + 
 							'<input v-model="id" readonly><br>' +
 							'<input v-model="name"><br>' +
@@ -122,7 +300,22 @@
 							'<input v-model="apt"><br>' +
 							'<input v-model="index"><br><br>' +
 						'<button v-on:click="goBack" style="display: initial;">Back</button>' +
+						'<phone-form></phone-form>' +
 						'</div>',
+			template: `	<div class="wrapper">
+ 
+							<navbar></navbar>
+							<div class="content">
+								<main>
+									<section class="search-results">
+										<phone-form></phone-form>
+									</section>
+									
+									 
+								</main>
+							</div>
+ 
+						</div>`,			
 			data: function () {
 					return {
 						message: '',
@@ -155,7 +348,7 @@
 						})
 				},
 			}
-		})	
+		});
 		
 		Vue.component('phones-items', {
 			template: ` <div v-if="loading">
