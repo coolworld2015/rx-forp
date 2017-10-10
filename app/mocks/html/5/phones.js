@@ -319,18 +319,6 @@
 		});				
 						
 		Vue.component('phone-details', {
-			template1: '<div style="text-align: center; margin-top: 100px;">' + 
-							'{{ name }}<br><br>' + 
-							'<input v-model="id" readonly><br>' +
-							'<input v-model="name"><br>' +
-							'<input v-model="phone"><br>' +
-							'<input v-model="street"><br>' +
-							'<input v-model="house"><br>' +
-							'<input v-model="apt"><br>' +
-							'<input v-model="index"><br><br>' +
-						'<button v-on:click="goBack" style="display: initial;">Back</button>' +
-						'<phone-form></phone-form>' +
-						'</div>',
 			template: `	<div class="wrapper">
  
 							<navbar></navbar>
@@ -339,43 +327,10 @@
 									<section class="search-results">
 										<phone-form></phone-form>
 									</section>
-									
-									 
 								</main>
 							</div>
  
-						</div>`,			
-			data: function () {
-					return {
-						message: '',
-						id: this.$route.params.id,
-						name: this.$route.params.name,
-						phone: this.$route.params.phone,
-						street: this.$route.params.street,
-						house: this.$route.params.house,
-						apt: this.$route.params.apt,
-						index: this.$route.params.index
-					}
-			},
-			created() {
-				appConfig.message = this.name;
-			},
-			methods: {
-				goBack() {
-					this.$router.push('/phones');
-				},
-				updateItem() {
-					appConfig.message = 'Loading...'
-					this.$http.post('https://ui-base.herokuapp.com/api/users/update', {                
-							id: this.id,
-							name: this.name,
-							pass: this.pass,
-							description: this.description})
-						.then(result => { 
-							this.$router.push('/users');
-						})
-				},
-			}
+						</div>`
 		});
 		
 		Vue.component('phones-items', {

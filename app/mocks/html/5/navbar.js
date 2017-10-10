@@ -22,7 +22,7 @@
 									<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('audit')" v-bind:class="{ active: audit }">
 										<a class="fp-nav-link" href="#">Безготівковий</a>
 									</li>
-									<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('test1')" v-bind:class="{ active: test1 }">
+									<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('users')" v-bind:class="{ active: users }">
 										<a class="fp-nav-link" href="#">Безготівковий+</a>
 									</li>
 									<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('test2')" v-bind:class="{ active: test2 }">
@@ -61,7 +61,7 @@
 										<a class="fp-nav-link" href="#" title="Безготівковий">Б</a>
 										<span class="hot-key-hint">4</span>
 									</li>
-									<li class="fp-nav-item fp-nav-item-left" v-on:click="changeRoute('test1')" v-bind:class="{ active: test1 }">
+									<li class="fp-nav-item fp-nav-item-left" v-on:click="changeRoute('users')" v-bind:class="{ active: users }">
 										<a class="fp-nav-link" href="#" title="Безготівковий+">Б+</a>
 										<span class="hot-key-hint">5</span>
 									</li>
@@ -96,6 +96,7 @@
 				payments: null,
 				phones: null,
 				audit: null,
+				users: null,
 				test: null,
 				test1: null,
 				test2: null,
@@ -126,6 +127,12 @@
 						this.audit = true;
 					} else {
 						this.audit = false;
+					}		
+					
+					if (this.route == 'Users') {
+						this.users = true;
+					} else {
+						this.users = false;
 					}				
 					
 					if (this.route == 'Test') {

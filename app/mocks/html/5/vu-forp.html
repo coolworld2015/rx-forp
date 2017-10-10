@@ -160,6 +160,7 @@
 	<script src="payments.js"></script>
 	<script src="phones.js"></script>
 	<script src="audit.js"></script>
+	<script src="users.js"></script>
 </head>
 
 <body class="squeeze">
@@ -174,12 +175,18 @@
 		appConfig.message =  'Loading';
  
 		const Payments = { template: '<payments></payments>' }
+		const PaymentDetails = { template: '<payment-details></payment-details>' }
 		const PaymentEdit = { template: '<payment-edit></payment-edit>' }
 		
 		const Phones = { template: '<phones></phones>' }
 		const PhoneDetails = { template: '<phone-details></phone-details>' }
 		
 		const Audit = { template: '<audit></audit>' }
+		const AuditDetails = { template: '<audit-details></audit-details>' }
+		
+		const Users = { template: '<users></users>' }
+		const UserDetails = { template: '<user-details></user-details>' }
+		const UserEdit = { template: '<user-edit></user-edit>' }
 		
 		const Test = { 
 			template: '<div class="wrapper"><navbar></navbar><div class="content"><main><section class="search-results">' +
@@ -269,14 +276,20 @@
 		
 		const routes = [
 		  { path: '/', component: Test5 },
+		  
 		  { path: '/payments', component: Payments },
 		  { path: '/payment-edit', component: PaymentEdit },
-		  //{ path: '/payment-details/:id/:name/:phone/:street/:house/:apt/:index', component: PaymentDetails },
+		  { path: '/payment-details/:id/:name/:phone/:street/:house/:apt/:index', component: PaymentDetails },
 		  
 		  { path: '/phones', component: Phones },
 		  { path: '/phone-details/:id/:name/:phone/:street/:house/:apt/:index', component: PhoneDetails },
 		  
 		  { path: '/audit', component: Audit },
+		  { path: '/audit-details/:id/:name/:date/:ip/:description', component: AuditDetails },
+		  
+		  { path: '/users', component: Users },
+		  { path: '/user-details/:id/:name/:pass/:description', component: UserDetails, props: true },
+		  { path: '/user-edit', component: UserEdit },
 		  
 		  { path: '/test', component: Test },
 		  { path: '/test1', component: Test1 },

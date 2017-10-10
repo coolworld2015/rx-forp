@@ -1,48 +1,51 @@
 
-		Vue.component('audit', {
+		Vue.component('users', {
 			template: `	<div class="wrapper">
- 
+
 							<navbar></navbar>
 							<div class="content">
 								<main>
 									<section class="search-results">
-										<audit-header></audit-header>
-										<audit-items></audit-items>
+										<users-header></users-header>
+										<users-items></users-items>
 									</section>
 									
-									<audit-footer></audit-footer>
+									<users-footer></users-footer>
 								</main>
 							</div>
- 
+
 						</div>`,
 			data: function () {
 			  return {
-				route: 'Audit',		
+				route: 'Users',		
 			  }
 			},
 			created() {
 				appConfig.route = this.route;			
-			},
+			},			
 		});
 		
-		Vue.component('audit-header', {
+		Vue.component('users-header', {
 			template: `	<header class="header d-flex justify-content-center align-items-center">
-
+		
 							<form action="/" class="search-form" id="search" style="display: block; position: absolute; top: -55px;">
-								<input type="text" class="form-control" placeholder="Поиск пользователя" 
+								<input type="text" class="form-control" placeholder="Пошук платежу" 
 								v-model="searchQuery" v-on:click="searchClear" v-on:keyup="changeView">
 								<svg class="search-form-svg"><use xlink:href="#maginifierTool"></use></svg>
 								<span class="hot-key-hint hot-key-hint--left">/</span>
 							</form>
-				
-							<div class="search-results-header">
+							
+							<div class="search-results-header">							
 								<div class="search-results-item search-results-choose"></div>
-								<div class="search-results-item search-results-sender" style="left: 25px;">ID</div>
-								<div class="search-results-item search-results-product">Пользователь</div>
-								<div class="search-results-item search-results-sender" style="left: 25px;">Дата</div>
-								<div class="search-results-item search-results-transfer" style="left: -15px;">Описание</div>
-								<div class="search-results-item search-results-amount" style="left: -25px;">Адрес</div>
-								<div class="search-results-item search-results-result">Индекс</div>
+								<div class="search-results-item search-results-sender">Відправник</div>
+								<div class="search-results-item search-results-product">Продукт</div>
+								<div class="search-results-item search-results-transfer">Номер переказу</div>
+								<div class="search-results-item search-results-currency">Валюта</div>
+								<div class="search-results-item search-results-amount">Сума</div>
+								<div class="search-results-item search-results-date">Дата</div>
+								<div class="search-results-item search-results-result">Дійсний</div>
+								<div class="search-results-item search-results-status">Статус</div>
+								<div class="search-results-item search-results-other"></div>
 							</div>
 						</header>`,
 			data: function () {
@@ -57,16 +60,11 @@
 				searchClear() {
 					this.searchQuery = '';
 					bus.$emit('searchQuery', this.searchQuery);
-				},
-				changeRoute(route) {
-					event.preventDefault()
-					this.$router.push({ path: route});
-					return false;
 				}
 			}			
 		});
 		
-		Vue.component('audit-footer', {
+		Vue.component('users-footer', {
 			template: `	<section class="activated-payments d-flex justify-content-start align-items-center shown" id="activatedPayments">
 							<div class="activated-payments-item">
 								<span class="selected-payments" id="activatedPaymentsBox" style="width: 44px;">{{ count }}</span>
@@ -100,18 +98,18 @@
 							</div> 
 						</section>`,
 			data: function () {
-			  return {	
+			  return {
 				count: 0,		
 			  }
 			},
 			created() {
 				bus.$on('itemsCount', itemsCount => {
 					this.count = itemsCount;
-				})		
+				})			
 			},			
 		});
-			
-		Vue.component('audit-form', {
+		
+		Vue.component('user-form', {
 			template: `<form action="/" class="payment-form payment-form--create d-flex justify-content-stretch">
 					
 					<fieldset class="sender-data form-section-wrapper">
@@ -120,28 +118,28 @@
 						<div class="form-section">
 							<div class="form-group">
 								<label for="senderSurname">Прізвище</label>
-								<input type="text" class="form-control" id="senderSurname" placeholder="Прізвище відправника" v-model="id">
+								<input type="text" class="form-control" id="senderSurname" placeholder="Прізвище відправника" v-model="name">
 								<div class="invalid-feedback">
 									Будь ласка, коректно вкажіть прізвище відправника.
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="senderName">Ім'я</label>
-								<input type="text" class="form-control" id="senderName" placeholder="Ім'я відправника" v-model="date">
+								<input type="text" class="form-control" id="senderName" placeholder="Ім'я відправника" v-model="name">
 								<div class="invalid-feedback">
 									Будь ласка, коректно вкажіть ім'я відправника.
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="senderPatronymic">По-батькові</label>
-								<input type="text" class="form-control" id="senderPatronymic" placeholder="По-батькові відправника" v-model="date">
+								<input type="text" class="form-control" id="senderPatronymic" placeholder="По-батькові відправника" v-model="name">
 								<div class="invalid-feedback">
 									Будь ласка, коректно вкажіть по-батькові відправника.
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="senderPhone">Номер телефону</label>
-								<input type="text" class="form-control" id="senderPhone" placeholder="+380 (XX) XXX-XX-XX" v-model="date">
+								<input type="text" class="form-control" id="senderPhone" placeholder="+380 (XX) XXX-XX-XX" v-model="amount">
 								<div class="invalid-feedback">
 									Будь ласка, коректно вкажіть номер телефону відправника.
 								</div>
@@ -173,7 +171,7 @@
 							<div class="form-group">
 								<label for="typeId">Тип документу</label>
 								<select class="form-control" id="typeId">
-									<option>{{ date }}</option>
+									<option>{{ amount }}</option>
 								</select>
 								<div class="invalid-feedback">
 									Будь ласка, виберіть зі списку тип документу.
@@ -183,14 +181,14 @@
 							<div class="form-row">
 								<div class="form-group col-md-3">
 									<label for="idSeries">Серія</label>
-									<input type="text" class="form-control" id="idSeries" placeholder="-" v-model="date">
+									<input type="text" class="form-control" id="idSeries" placeholder="-" v-model="amount">
 									<div class="invalid-feedback">
 										Будь ласка, коректно вкажіть серію документу.
 									</div>
 								</div>
 								<div class="form-group col-md-9">
 									<label for="numberId">Номер</label>
-									<input type="text" class="form-control" id="numberId" placeholder="-" v-model="date">
+									<input type="text" class="form-control" id="numberId" placeholder="-" v-model="amount">
 									<div class="invalid-feedback">
 										Будь ласка, коректно вкажіть номер документу.
 									</div>
@@ -288,18 +286,28 @@
 					</div>
 				</form>`,
 			data: function () {
-				return {
-					amount: '',
-					id: this.$route.params.id,
-					name: this.$route.params.name,
-					date: this.$route.params.date,
-					ip: this.$route.params.ip,
-					description: this.$route.params.description
+					return {
+						name: '',
+						amount: '',
+					}
+			},
+			created() {
+				if (!appConfig.user) {
+					this.$router.push('/users');
+				} else {
+					this.setData();
 				}
 			},
 			methods: {
+				setData() {
+					if (appConfig) {
+						if (appConfig.user) {
+							this.name = appConfig.user.name;
+						}
+					}
+				},
 				goBack() {
-					this.$router.push('/audit');
+					this.$router.push('/users');
 				},
 				updateItem() {
 					appConfig.message = 'Loading...'
@@ -313,16 +321,16 @@
 						})
 				},
 			}
-		});				
+		});	
 						
-		Vue.component('audit-details', {
+		Vue.component('user-details', {
 			template: `	<div class="wrapper">
  
 							<navbar></navbar>
 							<div class="content">
 								<main>
 									<section class="search-results">
-										<audit-form></audit-form>
+										<user-form></user-form>
 									</section>
 								</main>
 							</div>
@@ -330,7 +338,22 @@
 						</div>`
 		});
 		
-		Vue.component('audit-items', {
+		Vue.component('user-edit', {
+			template: `	<div class="wrapper">
+ 
+							<navbar></navbar>
+							<div class="content">
+								<main>
+									<section class="search-results">
+										<user-form></user-form>
+									</section>
+								</main>
+							</div>
+ 
+						</div>`
+		});
+				
+		Vue.component('users-items', {
 			template: ` <div v-if="loading">
 						  <div class="fa fa-circle-o-notch fa-spin" 
 							style="position: relative; 
@@ -340,29 +363,34 @@
 								display:-webkit-box;
 								font-size:54px">
 							</div>
-						</div>	
+						</div>
 						
 						<div class="search-results-content" v-else>
-							<div class="payment" v-for="item in items" v-on:click="showItem(item)">
+							<div class="payment" v-for="item in items" v-bind:class="{ selected: clicked }" v-on:click="showDetails(item)">
 								<div class="search-results-item search-results-choose"><span class="circle"></span></div>
 								<div class="search-results-item search-results-sender">{{ item.id }}</div>
-								<div class="search-results-item search-results-transfer">{{ item.name }}</div>
-								<div class="search-results-item search-results-sender">{{ item.date }}</div>
-								<div class="search-results-item search-results-transfer">{{ item.description }}</div>
-								<div class="search-results-item search-results-amount">{{ (item.ip).split('f:')[1]}}</div>
- 
+								<div class="search-results-item search-results-product">{{ item.id }}</div>
+								<div class="search-results-item search-results-transfer">{{ item.id }}</div>
+								<div class="search-results-item search-results-currency">UAH</div>
+								<div class="search-results-item search-results-amount">1111</div>
+								<div class="search-results-item search-results-date">01 Жовтня 2017</div>
 								<div class="search-results-item search-results-result long-term">
 									<span class="search-results-icon"></span>
-									{{ item.id }}
-								</div> 
- 
+									30 днів
+								</div>
+								<div class="search-results-item search-results-status active">
+									<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+									Активний
+								</div>
+								<div class="search-results-item search-results-other">...</div>
 							</div>
 						</div>`,
 			data: function () {
 			  return {
 				items: [],
 				filteredItems: [],
-				loading: true,		
+				loading: true,
+				clicked: false
 			  }
 			},
 			created() {
@@ -371,30 +399,40 @@
 					this.searchQuery = searchQuery;
 					var arr = [].concat(this.filteredItems);
 					var items = arr.filter((el) => el.id.toLowerCase().indexOf(searchQuery.toLowerCase()) != -1);
-					this.items = items.slice(0, 50);
+					this.items = items;
 					bus.$emit('itemsCount', items.length);
 					
 					if (searchQuery == '') {
-						this.items = this.filteredItems.slice(0, 50);
+						this.items = this.filteredItems;
 					}
-				})				
+				})
 			},
 			methods: {
 				fetchData() {
-					this.$http.get('https://ui-base.herokuapp.com/api/audit/get')
-						.then(result => { 
-							this.items = result.data.sort(this.sort).slice(0, 50);
-							this.filteredItems = result.data.sort(this.sort);
+					this.$http.get('https://ui-base.herokuapp.com/api/users/get')
+						.then(result => {
+							this.items = result.data;
+							this.filteredItems = result.data;
 							this.loading = false;
 							bus.$emit('itemsCount', result.data.length);
 						})
 				},
+				onItem(item) {
+					if (this.clicked) {
+						this.clicked = false;
+					} else {
+						this.clicked = true;
+					}
+					console.log(item.id);
+					//this.clicked = true;
+				},
 				showItem(item){
-					this.$router.push({ path: '/audit-details/' + item.id + '/' + item.name + '/' + item.date + '/' + item.ip + '/' + item.description });
+					this.$router.push({ path: '/user-details/' + item.id + '/' + item.name + '/' + item.pass + '/' + item.description });
 				},				
 				showDetails(item){
-					appConfig.audit = item;
-					this.$router.push('audit-edit');
+					appConfig.user = item;
+					console.log(appConfig.user);
+					this.$router.push('user-edit');
 				},
 				sort(a, b) {
 					let nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
@@ -408,3 +446,58 @@
 				}				
 			}
 		});
+		/*
+						<div class="search-results-content" v-else>
+							<div class="payment" v-for="item in items">
+								<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+								<div class="search-results-item search-results-sender">{{ item.cashdesk_system_id }}</div>
+								<div class="search-results-item search-results-product">{{ item.sender.cashdesk.city_id }}</div>
+								<div class="search-results-item search-results-transfer">{{ item.cashdesk_registration_id }}</div>
+								<div class="search-results-item search-results-currency">UAH</div>
+								<div class="search-results-item search-results-amount">{{((+item.amount).toFixed(2)).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ")}}</div>
+								<div class="search-results-item search-results-date">01 Жовтня 2017</div>
+								<div class="search-results-item search-results-result long-term">
+									<span class="search-results-icon"></span>
+									30 днів
+								</div>
+								<div class="search-results-item search-results-status active">
+									<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+									Активний
+								</div>
+								<div class="search-results-item search-results-other">...</div>
+							</div>
+						</div>`,
+		*/
+		/*				
+			template: ` <div v-if="loading">
+						  <div class="fa fa-circle-o-notch fa-spin" 
+							style="position: relative; 
+								top: 200px; 
+								-webkit-box-align:center;
+								-webkit-box-pack:center;
+								display:-webkit-box;
+								font-size:54px">
+							</div>
+						</div>
+						
+						<div class="search-results-content" v-else>
+							<div class="payment" v-for="item in items" v-bind:class="{ selected: clicked }" v-on:click="onItem(item)">
+								<div class="search-results-item search-results-choose"><span class="circle"></span></div>
+								<div class="search-results-item search-results-sender">{{ item.id }}</div>
+								<div class="search-results-item search-results-product">{{ item.id }}</div>
+								<div class="search-results-item search-results-transfer">{{ item.id }}</div>
+								<div class="search-results-item search-results-currency">UAH</div>
+								<div class="search-results-item search-results-amount">1111</div>
+								<div class="search-results-item search-results-date">01 Жовтня 2017</div>
+								<div class="search-results-item search-results-result long-term">
+									<span class="search-results-icon"></span>
+									30 днів
+								</div>
+								<div class="search-results-item search-results-status active">
+									<svg class="search-results-svg"><use xlink:href="#flag"></use></svg>
+									Активний
+								</div>
+								<div class="search-results-item search-results-other">...</div>
+							</div>
+						</div>`,				
+		*/					
