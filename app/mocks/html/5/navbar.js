@@ -182,8 +182,10 @@
 					bus.$emit('searchQuery', this.searchQuery);
 				},
 				changeRoute(route) {
-					event.preventDefault()
-					this.$router.push({ path: route});
+					event.preventDefault();
+					console.log(route);
+					//this.$router.push({ path: route});
+					this.$router.push('/' + route);
 					return false;
 				}
 			}

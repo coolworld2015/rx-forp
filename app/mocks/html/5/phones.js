@@ -120,28 +120,28 @@
 						<div class="form-section">
 							<div class="form-group">
 								<label for="senderSurname">Прізвище</label>
-								<input type="text" class="form-control" id="senderSurname" placeholder="Прізвище відправника">
+								<input type="text" class="form-control" id="senderSurname" placeholder="Прізвище відправника" v-model="name">
 								<div class="invalid-feedback">
 									Будь ласка, коректно вкажіть прізвище відправника.
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="senderName">Ім'я</label>
-								<input type="text" class="form-control" id="senderName" placeholder="Ім'я відправника">
+								<input type="text" class="form-control" id="senderName" placeholder="Ім'я відправника" v-model="name">
 								<div class="invalid-feedback">
 									Будь ласка, коректно вкажіть ім'я відправника.
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="senderPatronymic">По-батькові</label>
-								<input type="text" class="form-control" id="senderPatronymic" placeholder="По-батькові відправника">
+								<input type="text" class="form-control" id="senderPatronymic" placeholder="По-батькові відправника" v-model="name">
 								<div class="invalid-feedback">
 									Будь ласка, коректно вкажіть по-батькові відправника.
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="senderPhone">Номер телефону</label>
-								<input type="text" class="form-control" id="senderPhone" placeholder="+380 (XX) XXX-XX-XX">
+								<input type="text" class="form-control" id="senderPhone" placeholder="+380 (XX) XXX-XX-XX" v-model="phone">
 								<div class="invalid-feedback">
 									Будь ласка, коректно вкажіть номер телефону відправника.
 								</div>
@@ -173,7 +173,7 @@
 							<div class="form-group">
 								<label for="typeId">Тип документу</label>
 								<select class="form-control" id="typeId">
-									<option>Виберіть</option>
+									<option>{{ street }}</option>
 								</select>
 								<div class="invalid-feedback">
 									Будь ласка, виберіть зі списку тип документу.
@@ -183,14 +183,14 @@
 							<div class="form-row">
 								<div class="form-group col-md-3">
 									<label for="idSeries">Серія</label>
-									<input type="text" class="form-control" id="idSeries" placeholder="-">
+									<input type="text" class="form-control" id="idSeries" placeholder="-" v-model="house">
 									<div class="invalid-feedback">
 										Будь ласка, коректно вкажіть серію документу.
 									</div>
 								</div>
 								<div class="form-group col-md-9">
 									<label for="numberId">Номер</label>
-									<input type="text" class="form-control" id="numberId" placeholder="-">
+									<input type="text" class="form-control" id="numberId" placeholder="-" v-model="apt">
 									<div class="invalid-feedback">
 										Будь ласка, коректно вкажіть номер документу.
 									</div>
@@ -284,9 +284,38 @@
 					
 					<div class="form-info">
 						<p>Відправити платіж <span class="amount">10 000</span> UAH</p>
-						<button class="btn btn-danger" type="submit">Відправити</button>
+						<button class="btn btn-danger" type="submit" v-on:click="goBack">Відправити</button>
 					</div>
-				</form>`
+				</form>`,
+			data: function () {
+				return {
+					message: '',
+					id: this.$route.params.id,
+					name: this.$route.params.name,
+					phone: this.$route.params.phone,
+					street: this.$route.params.street,
+					house: this.$route.params.house,
+					apt: this.$route.params.apt,
+					index: this.$route.params.index,
+				}
+			},
+			methods: {
+				goBack() {
+					this.$router.push('/phones');
+				},
+				updateItem() {
+					appConfig.message = 'Loading...'
+					this.$http.post('https://ui-base.herokuapp.com/api/users/update', {                
+							id: this.id,
+							name: this.name,
+							pass: this.pass,
+							description: this.description})
+						.then(result => { 
+							//console.log(result);
+							this.$router.push('/users');
+						})
+				},
+			}
 		});				
 						
 		Vue.component('phone-details', {
