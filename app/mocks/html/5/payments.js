@@ -292,7 +292,6 @@
 					}
 			},
 			created() {
-				console.log('xxx - ' + appConfig.payment)
 				if (!appConfig.payment) {
 					this.$router.push('/payments');
 				} else {
@@ -411,19 +410,7 @@
 								</main>
 							</div>
  
-						</div>`,			
-			data: function () {
-					return {
-						message: '',
-						amount: '',
-					}
-			},
-			created() {
-				//if (!appConfig.payment) {this.$router.push('/payments');};
-				//this.setData();
-			},
-			methods: {
-			}
+						</div>`
 		});
 				
 		Vue.component('payments-items', {

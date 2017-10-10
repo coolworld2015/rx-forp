@@ -372,7 +372,6 @@
 							pass: this.pass,
 							description: this.description})
 						.then(result => { 
-							//console.log(result);
 							this.$router.push('/users');
 						})
 				},
@@ -432,7 +431,6 @@
 				fetchData() {
 					this.$http.get('https://ui-base.herokuapp.com/api/items/get')
 						.then(result => { 
-							//console.log(result);
 							this.items = result.data.sort(this.sort).slice(0, 50);
 							this.filteredItems = result.data.sort(this.sort);
 							this.loading = false;
