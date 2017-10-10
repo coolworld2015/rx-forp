@@ -174,6 +174,7 @@
 		appConfig.message =  'Loading';
  
 		const Payments = { template: '<payments></payments>' }
+		const PaymentEdit = { template: '<payment-edit></payment-edit>' }
 		
 		const Phones = { template: '<phones></phones>' }
 		const PhoneDetails = { template: '<phone-details></phone-details>' }
@@ -269,6 +270,8 @@
 		const routes = [
 		  { path: '/', component: Test5 },
 		  { path: '/payments', component: Payments },
+		  { path: '/payment-edit', component: PaymentEdit },
+		  //{ path: '/payment-details/:id/:name/:phone/:street/:house/:apt/:index', component: PaymentDetails },
 		  
 		  { path: '/phones', component: Phones },
 		  { path: '/phone-details/:id/:name/:phone/:street/:house/:apt/:index', component: PhoneDetails },
