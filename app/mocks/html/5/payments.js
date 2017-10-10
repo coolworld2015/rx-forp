@@ -60,11 +60,6 @@
 				searchClear() {
 					this.searchQuery = '';
 					bus.$emit('searchQuery', this.searchQuery);
-				},
-				changeRoute(route) {
-					event.preventDefault()
-					this.$router.push({ path: route});
-					return false;
 				}
 			}			
 		});
@@ -162,6 +157,7 @@
 					var items = arr.filter((el) => el.cashdesk_system_id.toLowerCase().indexOf(searchQuery.toLowerCase()) != -1);
 					//var items = arr.filter((el) => el.id.toLowerCase().indexOf(searchQuery.toLowerCase()) != -1);
 					this.items = items;
+					bus.$emit('itemsCount', items.length);
 					
 					if (searchQuery == '') {
 						this.items = this.filteredItems;

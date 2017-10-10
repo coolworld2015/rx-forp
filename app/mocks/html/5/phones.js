@@ -255,7 +255,7 @@
 						<div class="form-section">
 							<div class="form-group">
 								<label for="amount">Сума переказу, грн</label>
-								<input type="number" class="form-control" id="amount" placeholder="0.00">
+								<input type="number" class="form-control" id="amount" placeholder="0.00" v-model="amount">
 								<div class="invalid-feedback">
 									Сума переказу не може перевищувати 149 999.99 грн.
 								</div>
@@ -283,13 +283,13 @@
 					</fieldset>
 					
 					<div class="form-info">
-						<p>Відправити платіж <span class="amount">10 000</span> UAH</p>
+						<p>Відправити платіж <span class="amount">{{((+amount).toFixed(2)).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ")}}</span> UAH</p>
 						<button class="btn btn-danger" type="submit" v-on:click="goBack">Відправити</button>
 					</div>
 				</form>`,
 			data: function () {
 				return {
-					message: '',
+					amount: '',
 					id: this.$route.params.id,
 					name: this.$route.params.name,
 					phone: this.$route.params.phone,
